@@ -1,35 +1,82 @@
-<!-- this is sarkari information portal website  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Sarkari Information Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sarkari portal infromation</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-    <header class="header">
-        <div class="logo"></div>
-        <nav class="nav">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="main">
-        <div class="content-box">
-            <h1>Welcome to Sarkari Information Portal</h1>
-            <p>Your one-stop destination for all government-related information and services. Stay informed about the
-latest updates, policies, and initiatives from the government. Explore our comprehensive resources and access essential services with ease.</p>
 
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <h2>सर्कारी सूचना</h2>
+            <p>Information Portal</p>
+        </div>
+
+        <ul class="menu">
+            <li class="active">Home</li>
+            <li>Provinces</li>
+            <li>Districts</li>
+            <li>Municipalities</li>
+            <li>Wards</li>
+            <li>Admin Panel</li>
+        </ul>
+    </aside>
+
+    <!-- Main Area -->
+    <div class="main">
+
+        <!-- Top Navbar -->
+        <header class="topbar">
+            <h3>Sarkari Information Portal — Nepal</h3>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1>सरकारी सूचना पोर्टल</h1>
+                <p>Nepal Municipality & Ward Information System</p>
+
+                <div class="search-box">
+                    <input type="text" placeholder="Search municipality or district...">
+                </div>
             </div>
-           <div class="image box">
-            <img src="images/flag.jpg" alt="sarkari image">
-           </div>
-    </section>
+        </section>
+
+        <!-- Cards Section -->
+        <section class="cards">
+            <div class="card">
+                <h4>Provinces</h4>
+                <p>7 Provinces of Nepal</p>
+                <span>7</span>
+            </div>
+
+            <div class="card">
+                <h4>Districts</h4>
+                <p>All districts information</p>
+                <span>77</span>
+            </div>
+
+            <div class="card">
+                <h4>Municipalities</h4>
+                <p>Metropolitan & Rural</p>
+                <span>753</span>
+            </div>
+
+            <div class="card">
+                <h4>Wards</h4>
+                <p>Ward level details</p>
+                <span>6,743</span>
+            </div>
+        </section>
+
+    </div>
+</div>
+
 </body>
 </html>
