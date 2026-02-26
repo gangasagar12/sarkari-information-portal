@@ -1,57 +1,60 @@
-// ===== DEMO MUNICIPALITY DATA =====
+document.getElementById("province").addEventListener("change", function() {
+    fetch(`/load-districts/?province_id=${this.value}`)
+    .then(response => response.json())
+    .then(data => {
+        let districtDropdown = document.getElementById("district");
+        districtDropdown.innerHTML = "<option>Select District</option>";
+        data.forEach(district => {
+            districtDropdown.innerHTML += `<option value="${district.id}">${district.name}</option>`;
+        });
+    });
+});
 
-const municipalities = [
-    {
-        name: "Kathmandu Metropolitan City",
-        district: "Kathmandu",
-        province: "Bagmati Province",
-        address: "Kathmandu, Nepal",
-        phone: "01-1234567",
-        email: "info@kathmandu.gov.np",
-        website: "https://kathmandu.gov.np",
-        wards: 32
-    },
-    {
-        name: "Pokhara Metropolitan City",
-        district: "Kaski",
-        province: "Gandaki Province",
-        address: "Pokhara, Nepal",
-        phone: "061-123456",
-        email: "info@pokhara.gov.np",
-        website: "https://pokhara.gov.np",
-        wards: 33
-    }
-];
+document.getElementById("district").addEventListener("change", function() {
+    fetch(`/load-municipalities/?district_id=${this.value}`)
+    .then(response => response.json())
+    .then(data => {
+        let municipalityDropdown = document.getElementById("municipality");
+        municipalityDropdown.innerHTML = "<option>Select Municipality</option>";
+        data.forEach(muni => {
+            municipalityDropdown.innerHTML += `<option value="${muni.id}">${muni.name}</option>`;
+        });
+    });
+});
 
-// ===== SEARCH FUNCTION =====
+function getMunicipalityInfo() {
+    let municipality_id = document.getElementById("municipality").value;
 
-function searchMunicipality() {
+    fetch(`/municipality-detail/?municipality_id=${municipality_id}`)
+    .then(response => response.json())
+    .then(data => {
 
-    const input = document.getElementById("searchInput").value.toLowerCase();
-    const resultBox = document.getElementById("result");
+        let html = `
+        <h3>${data.name}</h3>
+        <p><strong>Address:</strong> ${data.address}</p>
+        <p><strong>Phone:</strong> ${data.phone}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
 
-    const found = municipalities.find(m =>
-        m.name.toLowerCase().includes(input)
-    );
+        <h4>Mayor Information</h4>
+        <p>${data.mayor_name}</p>
+        <p>${data.mayor_phone}</p>
+        <p>${data.mayor_email}</p>
 
-    if (found) {
-        resultBox.innerHTML = `
-            <div class="result-box">
-                <h3>${found.name}</h3>
-                <p><strong>District:</strong> ${found.district}</p>
-                <p><strong>Province:</strong> ${found.province}</p>
-                <p><strong>Address:</strong> ${found.address}</p>
-                <p><strong>Phone:</strong> ${found.phone}</p>
-                <p><strong>Email:</strong> ${found.email}</p>
-                <p><strong>Website:</strong> ${found.website}</p>
-                <p><strong>Total Wards:</strong> ${found.wards}</p>
-            </div>
+        <h4>Ward Information</h4>
         `;
-    } else {
-        resultBox.innerHTML = `
-            <div class="result-box">
-                <p>No municipality found.</p>
+
+        data.wards.forEach(ward => {
+            html += `
+            <div>
+                <strong>Ward ${ward.ward_number}</strong><br>
+                Chairperson: ${ward.chairperson_name}<br>
+                Phone: ${ward.phone}<br>
+                Email: ${ward.email}
+                <hr>
             </div>
-        `;
-    }
+            `;
+        });
+
+        document.getElementById("result").innerHTML = html;
+    });
 }
