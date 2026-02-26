@@ -13,16 +13,17 @@ body {
 /* Layout */
 .layout {
     display: flex;
+    min-height: 100vh;
 }
 
 /* Sidebar */
 .sidebar {
     width: 250px;
-    height: 100vh;
     background: #1f2a4d;
     color: white;
     padding: 20px;
     position: fixed;
+    height: 100%;
 }
 
 .logo h2 {
@@ -44,7 +45,7 @@ body {
     border-radius: 6px;
     cursor: pointer;
     margin-bottom: 8px;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .menu li:hover,
@@ -56,53 +57,57 @@ body {
 .main {
     margin-left: 250px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Topbar */
 .topbar {
     background: #2e3b6e;
     color: white;
-    padding: 15px 25px;
+    padding: 18px 25px;
+    font-size: 18px;
 }
 
 /* Hero */
 .hero {
     position: relative;
-    height: 350px;
-    background: url(../images/background.png) no-repeat center center/cover;
+    min-height: 60vh;
+    background: linear-gradient(rgba(15,25,55,0.65), rgba(15,25,55,0.65)),
+                url("../images/background.png") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     color: white;
-}
-
-.hero-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 25, 55, 0.7);
+    padding: 40px 20px;
 }
 
 .hero-content {
-    position: relative;
-    text-align: center;
+    max-width: 700px;
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 42px;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .hero p {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    font-size: 18px;
+    opacity: 0.9;
 }
 
+/* Search Box */
 .search-box input {
-    padding: 12px 20px;
-    width: 400px;
+    padding: 14px 20px;
+    width: 100%;
+    max-width: 500px;
     border-radius: 8px;
     border: none;
     outline: none;
+    font-size: 16px;
 }
 
 /* Cards Section */
@@ -110,24 +115,36 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 30px;
+    padding: 40px;
 }
 
 .card {
     background: #1f2a4d;
     color: white;
-    padding: 20px;
-    border-radius: 10px;
-    transition: 0.3s;
+    padding: 25px;
+    border-radius: 12px;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+}
+
+.card h4 {
+    margin-bottom: 5px;
+}
+
+.card p {
+    font-size: 14px;
+    opacity: 0.8;
 }
 
 .card span {
+    display: block;
+    margin-top: 15px;
     color: #ff4c4c;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
 }
 
@@ -138,7 +155,7 @@ body {
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .sidebar {
         display: none;
     }
@@ -146,12 +163,10 @@ body {
     .main {
         margin-left: 0;
     }
+}
 
+@media (max-width: 600px) {
     .cards {
         grid-template-columns: 1fr;
-    }
-
-    .search-box input {
-        width: 100%;
     }
 }
