@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sarkari Information Portal</title>
+    <title>Sarkari Information Portal - Nepal Government Information System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official portal for Nepal's administrative information including provinces, districts, municipalities and wards.">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,16 +16,39 @@
         <div class="logo">
             <h2>सर्कारी सूचना</h2>
             <p>Information Portal</p>
+            <span class="version">v2.0</span>
         </div>
 
-        <ul class="menu">
-            <li class="active">Home</li>
-            <li>Provinces</li>
-            <li>Districts</li>
-            <li>Municipalities</li>
-            <li>Wards</li>
-            <li>Admin Panel</li>
-        </ul>
+        <nav class="menu" role="navigation">
+            <a href="#home" class="menu-item active" data-section="home">
+                <span class="icon">🏠</span>
+                <span class="label">Dashboard</span>
+            </a>
+            <a href="#provinces" class="menu-item" data-section="provinces">
+                <span class="icon">🗺️</span>
+                <span class="label">Provinces</span>
+            </a>
+            <a href="#districts" class="menu-item" data-section="districts">
+                <span class="icon">📍</span>
+                <span class="label">Districts</span>
+            </a>
+            <a href="#municipalities" class="menu-item" data-section="municipalities">
+                <span class="icon">🏛️</span>
+                <span class="label">Municipalities</span>
+            </a>
+            <a href="#wards" class="menu-item" data-section="wards">
+                <span class="icon">🏘️</span>
+                <span class="label">Wards</span>
+            </a>
+            <a href="#contact" class="menu-item" data-section="contact">
+                <span class="icon">📞</span>
+                <span class="label">Contact</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Last Updated: <span id="lastUpdate">Feb 27, 2026</span></p>
+        </div>
     </aside>
 
     <!-- Main Area -->
@@ -32,74 +56,369 @@
 
         <!-- Top Navbar -->
         <header class="topbar">
-            <h3>Sarkari Information Portal — Nepal</h3>
-        </header>
-
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-overlay"></div>
-            <div class="hero-content">
-                <h1>सरकारी सूचना पोर्टल</h1>
-                <p>Nepal Municipality & Ward Information System</p>
-
-                <div class="search-box">
-                    <input type="text" placeholder="Search municipality or district...">
-                    
+            <div class="topbar-content">
+                <h3>Sarkari Information Portal</h3>
+                <div class="topbar-controls">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+                    <button class="menu-toggle" id="menuToggle" title="Toggle menu">☰</button>
                 </div>
             </div>
-        </section>
+        </header>
 
-        <!-- Cards Section -->
-        <section class="cards">
-            <div class="card">
-                <h4>Provinces</h4>
-                <p>7 Provinces of Nepal</p>
-                <span>7</span>
-                        <div class="form-group">
-                <label for="province">Select Province</label>
-                <select id="province" name="province" required>
-                <option value="">-- Select Province --</option>
-                <option value="koshi">Koshi Province</option>
-                <option value="madhesh">Madhesh Province</option>
-                <option value="bagmati">Bagmati Province</option>
-                <option value="gandaki">Gandaki Province</option>
-                <option value="lumbini">Lumbini Province</option>
-                <option value="karnali">Karnali Province</option>
-                <option value="sudurpashchim">Sudurpashchim Province</option>
-            </select>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <span>Home</span>
+            <span class="current" id="breadcrumbCurrent"></span>
         </div>
-            </div>
 
-            <div class="card">
-                <h4>Districts</h4>
-                <p>All districts information</p>
-                <span>77</span>
-            </div>
+        <!-- Main Content Container -->
+        <div class="content-wrapper">
 
-            <div class="card">
-                <h4>Municipalities</h4>
-                <p>Metropolitan & Rural</p>
-                <span>753</span>
-            </div>
+            <!-- Dashboard Section (Default) -->
+            <section id="home" class="content-section active">
+                <div class="hero-banner">
+                    <div class="hero-content">
+                        <h1>Welcome to Sarkari Information Portal</h1>
+                        <p>Complete administrative information system for Nepal</p>
+                    </div>
+                </div>
 
-            <div class="card">
-                <h4>Wards</h4>
-                <p>Ward level details</p>
-                <span>6,743</span>
-            </div>
-        </section>
+                <div class="quick-stats">
+                    <div class="stat-box" onclick="navigate('provinces')">
+                        <span class="stat-icon">🗺️</span>
+                        <h4>7</h4>
+                        <p>Provinces</p>
+                    </div>
+                    <div class="stat-box" onclick="navigate('districts')">
+                        <span class="stat-icon">📍</span>
+                        <h4>77</h4>
+                        <p>Districts</p>
+                    </div>
+                    <div class="stat-box" onclick="navigate('municipalities')">
+                        <span class="stat-icon">🏛️</span>
+                        <h4>753</h4>
+                        <p>Municipalities</p>
+                    </div>
+                    <div class="stat-box" onclick="navigate('wards')">
+                        <span class="stat-icon">🏘️</span>
+                        <h4>6,743</h4>
+                        <p>Wards</p>
+                    </div>
+                </div>
+
+                <div class="feature-section">
+                    <h2>Key Features</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <span class="feature-icon">🔍</span>
+                            <h4>Advanced Search</h4>
+                            <p>Find municipalities, districts, and wards quickly with our powerful search functionality.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">📊</span>
+                            <h4>Detailed Statistics</h4>
+                            <p>Access comprehensive data and statistics for administrative divisions.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🗂️</span>
+                            <h4>Organized Structure</h4>
+                            <p>Navigate through hierarchical structure of provinces, districts, and municipalities.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🔒</span>
+                            <h4>Reliable Data</h4>
+                            <p>Official government information maintained with regular updates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-section-home">
+                    <h3>Quick Search</h3>
+                    <div class="search-container">
+                        <input type="text" id="globalSearch" placeholder="Search provinces, districts, municipalities or wards...">
+                        <button onclick="performGlobalSearch()">Search</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Provinces Section -->
+            <section id="provinces" class="content-section">
+                <div class="section-header">
+                    <h2>Provinces of Nepal</h2>
+                    <p class="section-subtitle">All 7 provinces with administrative details</p>
+                </div>
+
+                <div class="provinces-container">
+                    <div class="province-card">
+                        <h4>Koshi Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Biratnagar</p>
+                            <p><strong>Districts:</strong> 8</p>
+                            <p><strong>Municipalities:</strong> 87</p>
+                            <p class="description">Located in the eastern region, Koshi Province is home to Janakpur, a major pilgrimage site.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+
+                    <div class="province-card">
+                        <h4>Madhesh Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Janakpur</p>
+                            <p><strong>Districts:</strong> 8</p>
+                            <p><strong>Municipalities:</strong> 86</p>
+                            <p class="description">The southern plains region with rich cultural heritage and agricultural significance.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+
+                    <div class="province-card">
+                        <h4>Bagmati Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Kathmandu</p>
+                            <p><strong>Districts:</strong> 6</p>
+                            <p><strong>Municipalities:</strong> 95</p>
+                            <p class="description">Home to the capital city and the country's political and cultural center.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+
+                    <div class="province-card">
+                        <h4>Gandaki Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Pokhara</p>
+                            <p><strong>Districts:</strong> 6</p>
+                            <p><strong>Municipalities:</strong> 61</p>
+                            <p class="description">Known for tourism and natural beauty with stunning mountain views.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+
+                    <div class="province-card">
+                        <h4>Lumbini Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Dhulikhel</p>
+                            <p><strong>Districts:</strong> 12</p>
+                            <p><strong>Municipalities:</strong> 108</p>
+                            <p class="description">Birthplace of Buddha with historical and religious significance.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+
+                    <div class="province-card">
+                        <h4>Karnali Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Surkhet</p>
+                            <p><strong>Districts:</strong> 10</p>
+                            <p><strong>Municipalities:</strong> 79</p>
+                            <p class="description">Mountain region with diverse terrain and unique cultural heritage.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+
+                    <div class="province-card">
+                        <h4>Sudurpashchim Province</h4>
+                        <div class="province-details">
+                            <p><strong>Capital:</strong> Dhangadi</p>
+                            <p><strong>Districts:</strong> 9</p>
+                            <p><strong>Municipalities:</strong> 82</p>
+                            <p class="description">The far-western region with developing infrastructure and unique traditions.</p>
+                        </div>
+                        <button class="btn-secondary" onclick="navigate('districts')">View Districts →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Districts Section -->
+            <section id="districts" class="content-section">
+                <div class="section-header">
+                    <h2>Districts Information</h2>
+                    <p class="section-subtitle">All 77 districts of Nepal</p>
+                </div>
+
+                <div class="filter-section">
+                    <label>Filter by Province:</label>
+                    <select id="provinceFilter" onchange="filterDistricts()">
+                        <option value="">All Provinces</option>
+                        <option value="koshi">Koshi Province</option>
+                        <option value="madhesh">Madhesh Province</option>
+                        <option value="bagmati">Bagmati Province</option>
+                        <option value="gandaki">Gandaki Province</option>
+                        <option value="lumbini">Lumbini Province</option>
+                        <option value="karnali">Karnali Province</option>
+                        <option value="sudurpashchim">Sudurpashchim Province</option>
+                    </select>
+                </div>
+
+                <div class="stats-row">
+                    <div class="info-box">
+                        <h5>Total Districts</h5>
+                        <p class="big-number">77</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Districts/Province (Avg)</h5>
+                        <p class="big-number">11</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>Most Populous District</h5>
+                        <p class="big-number">Chitwan</p>
+                    </div>
+                </div>
+
+                <div id="districtsList" class="districts-grid">
+                    <!-- Districts will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Municipalities Section -->
+            <section id="municipalities" class="content-section">
+                <div class="section-header">
+                    <h2>Municipalities</h2>
+                    <p class="section-subtitle">753 municipalities across Nepal</p>
+                </div>
+
+                <div class="municipality-types">
+                    <div class="type-card">
+                        <span class="type-icon">🌟</span>
+                        <h4>Metropolitan Cities</h4>
+                        <p class="type-count">6</p>
+                        <p class="type-desc">Major urban centers</p>
+                    </div>
+                    <div class="type-card">
+                        <span class="type-icon">🏙️</span>
+                        <h4>Sub-metropolitan</h4>
+                        <p class="type-count">13</p>
+                        <p class="type-desc">Secondary cities</p>
+                    </div>
+                    <div class="type-card">
+                        <span class="type-icon">🏘️</span>
+                        <h4>Municipal Cities</h4>
+                        <p class="type-count">89</p>
+                        <p class="type-desc">Urban municipalities</p>
+                    </div>
+                    <div class="type-card">
+                        <span class="type-icon">🌾</span>
+                        <h4>Rural Municipalities</h4>
+                        <p class="type-count">645</p>
+                        <p class="type-desc">Rural areas</p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Municipality System</h3>
+                    <div class="info-content">
+                        <p>Municipalities in Nepal are responsible for providing local services and implementing government policies at the grassroots level.</p>
+                        <ul class="info-list">
+                            <li><strong>Service Delivery:</strong> Healthcare, education, and sanitation</li>
+                            <li><strong>Local Administration:</strong> Permit issuance and revenue collection</li>
+                            <li><strong>Development:</strong> Infrastructure projects and planning</li>
+                            <li><strong>Community Services:</strong> Social welfare and cultural programs</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wards Section -->
+            <section id="wards" class="content-section">
+                <div class="section-header">
+                    <h2>Wards Information</h2>
+                    <p class="section-subtitle">The smallest administrative divisions</p>
+                </div>
+
+                <div class="ward-overview">
+                    <div class="overview-card">
+                        <h4>Total Wards</h4>
+                        <p class="number">6,743</p>
+                    </div>
+                    <div class="overview-card">
+                        <h4>Wards per Municipality (Avg)</h4>
+                        <p class="number">9</p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Ward Structure & Functions</h3>
+                    <div class="info-content">
+                        <p>Wards are the basic unit of local government administration, providing direct services to citizens.</p>
+                        <div class="structure-grid">
+                            <div class="structure-item">
+                                <span class="item-icon">📋</span>
+                                <h4>Ward Roles</h4>
+                                <ul>
+                                    <li>Ward President</li>
+                                    <li>Ward Members</li>
+                                    <li>Ward Secretary</li>
+                                </ul>
+                            </div>
+                            <div class="structure-item">
+                                <span class="item-icon">⚙️</span>
+                                <h4>Key Functions</h4>
+                                <ul>
+                                    <li>Local planning</li>
+                                    <li>Service delivery</li>
+                                    <li>Tax collection</li>
+                                </ul>
+                            </div>
+                            <div class="structure-item">
+                                <span class="item-icon">🎯</span>
+                                <h4>Responsibilities</h4>
+                                <ul>
+                                    <li>Birth registration</li>
+                                    <li>Permit issuance</li>
+                                    <li>Community welfare</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="content-section">
+                <div class="section-header">
+                    <h2>Contact & Support</h2>
+                    <p class="section-subtitle">Get in touch with us</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h4>📧 Email</h4>
+                        <p>info@sarkariisuchinaportl.gov.np</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>📞 Phone</h4>
+                        <p>+977 (1) 4200-1234</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>🏢 Address</h4>
+                        <p>Singha Durbar, Kathmandu, Nepal</p>
+                    </div>
+                    <div class="contact-card">
+                        <h4>🕐 Hours</h4>
+                        <p>Sun-Fri: 9 AM - 5 PM</p>
+                    </div>
+                </div>
+
+                <div class="message-form">
+                    <h3>Send us a Message</h3>
+                    <form onsubmit="handleContactSubmit(event)">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Sarkari Information Portal. All rights reserved.</p>
+            <p>Government of Nepal | Ministry of Home Affairs</p>
+        </footer>
 
     </div>
 </div>
-<p id="selectedProvince"></p>
-
-<script>
-const provinceSelect = document.getElementById("province");
-const display = document.getElementById("selectedProvince");
-
-provinceSelect.addEventListener("change", function() {
-    display.innerHTML = "You selected: " + provinceSelect.options[provinceSelect.selectedIndex].text;
-});
-</script>
+<script src="js/script.js"></script>
 </body>
 </html>
