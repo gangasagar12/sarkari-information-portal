@@ -587,9 +587,12 @@ body {
   transform: translateY(-5px);
 }
 
-.province-icon {
-  font-size: 2.5rem;
-  margin-bottom: 0.75rem;
+.province-img {
+  width: 10%;
+  height: auto;
+  border-radius: 8px;
+
+
 }
 
 .province-card h4 {
