@@ -3,41 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About the Koshi Province</title>
+    <title>Koshi Province Information Portal - Nepal</title>
+    <meta name="description" content="Official information portal for Koshi Province including districts, municipalities, wards, services and development projects.">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
     <link rel="stylesheet" href="css/koshi.css">
-    <!-- BoxIcons for hamburger icon -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
-   <!-- Header -->
-  <header class="header">
-    <a class="logo" href="#home">Information Portal</a>
+
+<!-- Header -->
+<header class="header">
+    <a class="logo" href="#home">
+        <span class="logo-icon">🏛️</span>
+        कोशी प्रदेश
+        <small>Koshi Province Portal</small>
+    </a>
     <nav class="navbar">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#about" class="nav-link">District</a>
-      <a href="#skills" class="nav-link">Municipality</a>
-      <a href="#projects" class="nav-link">Wards</a>
-      <a href="#contact" class="nav-link">Contact</a>
+        <a href="#home" class="nav-link active" onclick="navigateTo('home')">Home</a>
+        <a href="#about" class="nav-link" onclick="navigateTo('about')">About</a>
+        <a href="#districts" class="nav-link" onclick="navigateTo('districts')">Districts</a>
+        <a href="#municipalities" class="nav-link" onclick="navigateTo('municipalities')">Municipalities</a>
+        <a href="#wards" class="nav-link" onclick="navigateTo('wards')">Wards</a>
+        <a href="#services" class="nav-link" onclick="navigateTo('services')">Services</a>
+        <a href="#contact" class="nav-link" onclick="navigateTo('contact')">Contact</a>
     </nav>
-    <button class="hamburger" aria-label="menu">
-      <i class="bx bx-menu"></i>
+    <button class="hamburger" id="hamburger" aria-label="menu">
+        <i class="bx bx-menu"></i>
     </button>
-  </header>
+</header>
 
-  <!-- Smaller Image Container -->
-  <div class="image-container">
-    <img src="images/koshi.png" alt="Koshi Province">
-  </div>
-
-  <!-- Search Section -->
-  <div class="search-section">
-    <h2>Search District or Ward</h2>
-    <div class="search-box">
-      <input type="text" placeholder="Enter District or Ward Name...">
-      <button>Search</button>
+<!-- Image Container -->
+<div class="image-container">
+    <img src="images/koshi.png" alt="Koshi Province" loading="lazy">
+    <div class="image-overlay">
+        <h1>Welcome to Koshi Province</h1>
+        <p>Eastern Gateway of Nepal</p>
     </div>
-  </div>
+</div>
 
-  <script src="js/koshi.js"></script>
+<!-- Search Section -->
+<div class="search-section">
+    <h2>Search District, Municipality or Ward</h2>
+    <div class="search-box">
+        <input type="text" id="globalSearch" placeholder="Enter District, Municipality or Ward Name...">
+        <button onclick="performSearch()">Search</button>
+    </div>
+    <div id="searchResults" class="search-results hidden"></div>
+</div>
+
+<!-- Main Content Wrapper -->
+<div class="main-content">
+
+    <!-- Home Section -->
+    <section id="home" class="content-section active">
+        <div class="section-container">
+            <div class="welcome-section">
+                <h2>कोशी प्रदेश सूचना पोर्टल</h2>
+                <p>Comprehensive Information Portal for Koshi Province Administration</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card" onclick="navigateTo('districts')">
+                    <span class="stat-icon">📍</span>
+                    <h3>8</h3>
+                    <p>Districts</p>
+                    <small>Bhojpur, Dhankuta, Ilam, Jhapa, Khotang, Morang, Okhaldhunga, Panchthar, Taplejung, Terhathum, Udayapur, Sunsari</small>
+                </div>
+
+                <div class="stat-card" onclick="navigateTo('municipalities')">
+                    <span class="stat-icon">🏘️</span>
+                    <h3>87</h3>
+                    <p>Municipalities</p>
+                    <small>Including 1 Metropolis, 8 Sub-metropolitan, 18 Municipal Cities</small>
+                </div>
+
+                <div class="stat-card" onclick="navigateTo('wards')">
+                    <span class="stat-icon">🏠</span>
+                    <h3>734</h3>
+                    <p>Total Wards</p>
+                    <small>Grassroots administrative units across all municipalities</small>
+                </div>
+
+                <div class="stat-card" onclick="navigateTo('services')">
+                    <span class="stat-icon">📋</span>
+                    <h3>50+</h3>
+                    <p>Services Available</p>
+                    <small>Online and offline government services</small>
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🗓️</span>
+                    <h4>Quick Updates</h4>
+                    <p>Get latest news, announcements and updates from Koshi Province administration</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📍</span>
+                    <h4>Location Services</h4>
+                    <p>Find contact information for all district, municipality and ward offices</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📄</span>
+                    <h4>Online Services</h4>
+                    <p>Apply for certificates, permits, licenses and other government documents</p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h4>Data & Reports</h4>
+                    <p>Access census data, budgets, development projects and official statistics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Koshi Province -->
+    <section id="about" class="content-section">
+        <div class="section-container">
+            <h2>About Koshi Province</h2>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>📍 Location & Geography</h3>
+                    <p><strong>Capital:</strong> Biratnagar (Administrative)</p>
+                    <p><strong>Area:</strong> 12,262 sq km</p>
+                    <p><strong>Region:</strong> Eastern Nepal</p>
+                    <p><strong>Terrain:</strong> Terai, Siwalik, and Himalayan</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>👥 Demography</h3>
+                    <p><strong>Population:</strong> 2,543,897 (2021 Census)</p>
+                    <p><strong>Population Density:</strong> 207 per sq km</p>
+                    <p><strong>Literacy Rate:</strong> 72.4%</p>
+                    <p><strong>Male/Female Ratio:</strong> 99:100</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>🏛️ Administration</h3>
+                    <p><strong>Chief Minister:</strong> Provincial Chief Minister Office</p>
+                    <p><strong>Provincial Assembly:</strong> 88 Members</p>
+                    <p><strong>Administrative Divisions:</strong> 8 Districts</p>
+                    <p><strong>Headquarters:</strong> Biratnagar</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>🌾 Economy</h3>
+                    <p><strong>Major Industries:</strong> Agriculture, Manufacturing, Trade</p>
+                    <p><strong>Crops:</strong> Rice, Wheat, Maize, Jute</p>
+                    <p><strong>Key Cities:</strong> Biratnagar, Jhapa, Ilam</p>
+                    <p><strong>Trade Partners:</strong> National & International</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>📚 Education</h3>
+                    <p><strong>Universities:</strong> 2 Central Universities</p>
+                    <p><strong>Colleges:</strong> 150+ (Bachelor's & Master's)</p>
+                    <p><strong>School Enrolment:</strong> 450,000+</p>
+                    <p><strong>Literacy Programs:</strong> Active Across Province</p>
+                </div>
+
+                <div class="about-card">
+                    <h3>🏥 Health</h3>
+                    <p><strong>Health Facilities:</strong> 8 District Hospitals</p>
+                    <p><strong>Primary Health Centers:</strong> 150+</p>
+                    <p><strong>Health Workers:</strong> Extensive Network</p>
+                    <p><strong>Service Coverage:</strong> 98% Population</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Districts Section -->
+    <section id="districts" class="content-section">
+        <div class="section-container">
+            <h2>Districts of Koshi Province</h2>
+            <p class="section-subtitle">8 Districts with complete administrative information</p>
+
+            <div class="filter-bar">
+                <input type="text" id="districtFilter" placeholder="Filter districts..." onkeyup="filterContent('district')">
+            </div>
+
+            <div class="districts-grid" id="districtsGrid">
+                <!-- Districts will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Municipalities Section -->
+    <section id="municipalities" class="content-section">
+        <div class="section-container">
+            <h2>Municipalities of Koshi Province</h2>
+            <p class="section-subtitle">87 Municipalities across 8 Districts</p>
+
+            <div class="municipality-filter">
+                <select id="municipalityDistrict" onchange="filterMunicipalities()">
+                    <option value="">All Districts</option>
+                    <option value="bhojpur">Bhojpur</option>
+                    <option value="dhankuta">Dhankuta</option>
+                    <option value="ilam">Ilam</option>
+                    <option value="jhapa">Jhapa</option>
+                    <option value="khotang">Khotang</option>
+                    <option value="morang">Morang</option>
+                    <option value="okhaldhunga">Okhaldhunga</option>
+                    <option value="panchthar">Panchthar</option>
+                </select>
+
+                <select id="municipalityType" onchange="filterMunicipalities()">
+                    <option value="">All Types</option>
+                    <option value="metropolis">Metropolis</option>
+                    <option value="sub-metropolitan">Sub-metropolitan</option>
+                    <option value="municipal">Municipal City</option>
+                    <option value="rural">Rural Municipality</option>
+                </select>
+            </div>
+
+            <div class="municipalities-grid" id="municipalitiesGrid">
+                <!-- Municipalities will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Wards Section -->
+    <section id="wards" class="content-section">
+        <div class="section-container">
+            <h2>Wards Information</h2>
+            <p class="section-subtitle">734 Wards - Smallest Administrative Units</p>
+
+            <div class="ward-info">
+                <div class="info-box">
+                    <h4>Ward Overview</h4>
+                    <ul>
+                        <li><strong>Total Wards:</strong> 734</li>
+                        <li><strong>Administrative Level:</strong> Grassroots</li>
+                        <li><strong>Functions:</strong> Local governance, service delivery, development</li>
+                        <li><strong>Leadership:</strong> Ward Chairman & Committee</li>
+                        <li><strong>Service Centers:</strong> Ward Office</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ward Services</h4>
+                    <ul>
+                        <li>Birth & Death Registration</li>
+                        <li>Marriage Certificates</li>
+                        <li>Building Permits</li>
+                        <li>Tax Collection</li>
+                        <li>Citizen Entitlements</li>
+                        <li>Local Project Supervision</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ward Office Hours</h4>
+                    <ul>
+                        <li><strong>Days:</strong> Sunday - Friday</li>
+                        <li><strong>Time:</strong> 10 AM - 5 PM</li>
+                        <li><strong>Holiday:</strong> Saturday</li>
+                        <li><strong>Special Hours:</strong> First Wednesday of Month</li>
+                        <li><strong>Services:</strong> Available on scheduled days</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ward-search">
+                <h3>Find Your Ward Office</h3>
+                <div class="search-box">
+                    <input type="text" id="wardSearch" placeholder="Enter your district and ward number...">
+                    <button onclick="searchWard()">Find</button>
+                </div>
+                <div id="wardResults" class="ward-results hidden"></div>
+            </div>
+        </div>
+    </section>
+
+
+<script src="js/koshi.js"></script>
 </body>
 </html>
