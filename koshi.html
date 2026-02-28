@@ -176,6 +176,110 @@
         </div>
     </section>
 
+    <!-- Districts Section -->
+    <section id="districts" class="content-section">
+        <div class="section-container">
+            <h2>Districts of Koshi Province</h2>
+            <p class="section-subtitle">8 Districts with complete administrative information</p>
+
+            <div class="filter-bar">
+                <input type="text" id="districtFilter" placeholder="Filter districts..." onkeyup="filterContent('district')">
+            </div>
+
+            <div class="districts-grid" id="districtsGrid">
+                <!-- Districts will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Municipalities Section -->
+    <section id="municipalities" class="content-section">
+        <div class="section-container">
+            <h2>Municipalities of Koshi Province</h2>
+            <p class="section-subtitle">87 Municipalities across 8 Districts</p>
+
+            <div class="municipality-filter">
+                <select id="municipalityDistrict" onchange="filterMunicipalities()">
+                    <option value="">All Districts</option>
+                    <option value="bhojpur">Bhojpur</option>
+                    <option value="dhankuta">Dhankuta</option>
+                    <option value="ilam">Ilam</option>
+                    <option value="jhapa">Jhapa</option>
+                    <option value="khotang">Khotang</option>
+                    <option value="morang">Morang</option>
+                    <option value="okhaldhunga">Okhaldhunga</option>
+                    <option value="panchthar">Panchthar</option>
+                </select>
+
+                <select id="municipalityType" onchange="filterMunicipalities()">
+                    <option value="">All Types</option>
+                    <option value="metropolis">Metropolis</option>
+                    <option value="sub-metropolitan">Sub-metropolitan</option>
+                    <option value="municipal">Municipal City</option>
+                    <option value="rural">Rural Municipality</option>
+                </select>
+            </div>
+
+            <div class="municipalities-grid" id="municipalitiesGrid">
+                <!-- Municipalities will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Wards Section -->
+    <section id="wards" class="content-section">
+        <div class="section-container">
+            <h2>Wards Information</h2>
+            <p class="section-subtitle">734 Wards - Smallest Administrative Units</p>
+
+            <div class="ward-info">
+                <div class="info-box">
+                    <h4>Ward Overview</h4>
+                    <ul>
+                        <li><strong>Total Wards:</strong> 734</li>
+                        <li><strong>Administrative Level:</strong> Grassroots</li>
+                        <li><strong>Functions:</strong> Local governance, service delivery, development</li>
+                        <li><strong>Leadership:</strong> Ward Chairman & Committee</li>
+                        <li><strong>Service Centers:</strong> Ward Office</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ward Services</h4>
+                    <ul>
+                        <li>Birth & Death Registration</li>
+                        <li>Marriage Certificates</li>
+                        <li>Building Permits</li>
+                        <li>Tax Collection</li>
+                        <li>Citizen Entitlements</li>
+                        <li>Local Project Supervision</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Ward Office Hours</h4>
+                    <ul>
+                        <li><strong>Days:</strong> Sunday - Friday</li>
+                        <li><strong>Time:</strong> 10 AM - 5 PM</li>
+                        <li><strong>Holiday:</strong> Saturday</li>
+                        <li><strong>Special Hours:</strong> First Wednesday of Month</li>
+                        <li><strong>Services:</strong> Available on scheduled days</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="ward-search">
+                <h3>Find Your Ward Office</h3>
+                <div class="search-box">
+                    <input type="text" id="wardSearch" placeholder="Enter your district and ward number...">
+                    <button onclick="searchWard()">Find</button>
+                </div>
+                <div id="wardResults" class="ward-results hidden"></div>
+            </div>
+        </div>
+    </section>
+
+
 <script src="js/koshi.js"></script>
 </body>
 </html>
