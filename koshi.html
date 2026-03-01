@@ -279,6 +279,314 @@
         </div>
     </section>
 
+    <!-- Services Section -->
+    <section id="services" class="content-section">
+        <div class="section-container">
+            <h2>Government Services</h2>
+            <p class="section-subtitle">Online & Offline Services Available</p>
+
+            <div class="service-tabs">
+                <div class="tab-btn active" onclick="switchServiceTab('registration')">Registration</div>
+                <div class="tab-btn" onclick="switchServiceTab('permits')">Permits & Licenses</div>
+                <div class="tab-btn" onclick="switchServiceTab('certificates')">Certificates</div>
+                <div class="tab-btn" onclick="switchServiceTab('welfare')">Welfare Programs</div>
+            </div>
+
+            <div class="service-content" id="registrationTab" style="display: block;">
+                <h3>Registration Services</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>📝 Birth Registration</h4>
+                        <p>Register newborn within 35 days</p>
+                        <ul>
+                            <li>Required Documents: Hospital Certificate, Parents' Citizenship</li>
+                            <li>Processing Time: 3-5 days</li>
+                            <li>Fee: ₹100</li>
+                            <li>Location: Ward Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Birth Registration')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>💒 Marriage Registration</h4>
+                        <p>Register marriage within 35 days</p>
+                        <ul>
+                            <li>Required Documents: Both parties' Citizenship, 2 Witnesses</li>
+                            <li>Processing Time: 3-5 days</li>
+                            <li>Fee: ₹300</li>
+                            <li>Location: Ward/District Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Marriage Registration')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>⚰️ Death Certificate</h4>
+                        <p>Get official death certificate</p>
+                        <ul>
+                            <li>Required Documents: Medical Report, 2 Witnesses</li>
+                            <li>Processing Time: 1-2 days</li>
+                            <li>Fee: ₹50</li>
+                            <li>Location: Ward Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Death Certificate')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>🪪 Citizenship Certificate</h4>
+                        <p>Obtain citizenship by birth or naturalization</p>
+                        <ul>
+                            <li>Required Documents: Parents' Citizenship, Birth Proof</li>
+                            <li>Processing Time: 7-10 days</li>
+                            <li>Fee: ₹200</li>
+                            <li>Location: District Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Citizenship')">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-content" id="permitsTab" style="display: none;">
+                <h3>Permits & Licenses</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>🏗️ Building Permit</h4>
+                        <p>Permission for construction</p>
+                        <ul>
+                            <li>Required Documents: Land Deed, Design Plans, Ownership Proof</li>
+                            <li>Processing Time: 15-30 days</li>
+                            <li>Fee: Variable (based on area)</li>
+                            <li>Location: Municipality Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Building Permit')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>🚗 Vehicle License</h4>
+                        <p>Vehicle registration and licensing</p>
+                        <ul>
+                            <li>Required Documents: Purchase Bill, Ownership Proof, Insurance</li>
+                            <li>Processing Time: 5-7 days</li>
+                            <li>Fee: Variable (based on vehicle type)</li>
+                            <li>Location: District Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Vehicle License')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>🏪 Business License</h4>
+                        <p>Permission for business operations</p>
+                        <ul>
+                            <li>Required Documents: Application, Citizenship, Address Proof</li>
+                            <li>Processing Time: 7-10 days</li>
+                            <li>Fee: ₹1,000-10,000 (based on business)</li>
+                            <li>Location: Municipality Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Business License')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>📋 Trade License</h4>
+                        <p>License for trade and commerce</p>
+                        <ul>
+                            <li>Required Documents: Application, PAN, Citizenship</li>
+                            <li>Processing Time: 5-10 days</li>
+                            <li>Fee: ₹1,500-15,000</li>
+                            <li>Location: Municipality Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Trade License')">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-content" id="certificatesTab" style="display: none;">
+                <h3>Certificates & Documents</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>📄 Character Certificate</h4>
+                        <p>Official character certificate</p>
+                        <ul>
+                            <li>Required Documents: Citizenship, Photo</li>
+                            <li>Processing Time: 3-5 days</li>
+                            <li>Fee: ₹200</li>
+                            <li>Location: Ward/Police Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Character Certificate')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>📖 Domicile Certificate</h4>
+                        <p>Proof of residence certificate</p>
+                        <ul>
+                            <li>Required Documents: Citizenship, Address Proof, Bill</li>
+                            <li>Processing Time: 1-3 days</li>
+                            <li>Fee: ₹100</li>
+                            <li>Location: Ward Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Domicile Certificate')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>🏠 Land Ownership Certificate</h4>
+                        <p>Property ownership documentation</p>
+                        <ul>
+                            <li>Required Documents: Deed, Ownership Papers</li>
+                            <li>Processing Time: 10-15 days</li>
+                            <li>Fee: ₹1,000</li>
+                            <li>Location: District Land Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Land Certificate')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>📋 Income Certificate</h4>
+                        <p>Official income documentation</p>
+                        <ul>
+                            <li>Required Documents: Application, Tax Papers, Citizenship</li>
+                            <li>Processing Time: 5-7 days</li>
+                            <li>Fee: ₹300</li>
+                            <li>Location: Ward/Municipality Office</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Income Certificate')">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-content" id="welfareTab" style="display: none;">
+                <h3>Welfare Programs & Schemes</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <h4>💰 Old Age Allowance</h4>
+                        <p>Monthly allowance for senior citizens</p>
+                        <ul>
+                            <li>Eligibility: Age 60+ years</li>
+                            <li>Monthly Benefit: ₹3,000</li>
+                            <li>Application: Ward Office</li>
+                            <li>Documents: Citizenship, Age Proof</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Old Age Allowance')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>👩 Single Women Allowance</h4>
+                        <p>Support for single women</p>
+                        <ul>
+                            <li>Eligibility: Single women, divorced, widowed</li>
+                            <li>Monthly Benefit: ₹2,000</li>
+                            <li>Application: Ward Office</li>
+                            <li>Documents: Citizenship, Proof of Status</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Single Women Allowance')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>♿ Disability Allowance</h4>
+                        <p>Support for disabled persons</p>
+                        <ul>
+                            <li>Eligibility: Disabled persons (40% or more)</li>
+                            <li>Monthly Benefit: ₹2,000</li>
+                            <li>Application: Ward Office</li>
+                            <li>Documents: Medical Certificate, Citizenship</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Disability Allowance')">Apply Now</button>
+                    </div>
+
+                    <div class="service-item">
+                        <h4>👶 Child Grant</h4>
+                        <p>Support for disadvantaged children</p>
+                        <ul>
+                            <li>Eligibility: Children up to 18 years</li>
+                            <li>Monthly Benefit: ₹400-600</li>
+                            <li>Application: Ward Office</li>
+                            <li>Documents: Birth Certificate, Citizenship</li>
+                        </ul>
+                        <button class="btn-apply" onclick="applyService('Child Grant')">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+        <div class="section-container">
+            <h2>Contact Information</h2>
+            <p class="section-subtitle">Get in touch with Koshi Province Administration</p>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <h4>📧 Email</h4>
+                    <p>info@koshiProvince.gov.np</p>
+                    <p>admin@koshiProvince.gov.np</p>
+                </div>
+
+                <div class="contact-card">
+                    <h4>📞 Phone</h4>
+                    <p>+977 (21) 470-1000</p>
+                    <p>+977 (21) 470-2000</p>
+                </div>
+
+                <div class="contact-card">
+                    <h4>🏛️ Office Address</h4>
+                    <p>Provincial Governor's Office</p>
+                    <p>Biratnagar, Morang District</p>
+                    <p>Koshi Province, Nepal</p>
+                </div>
+
+                <div class="contact-card">
+                    <h4>🕐 Office Hours</h4>
+                    <p>Sunday - Friday: 10 AM - 5 PM</p>
+                    <p>Saturday: Closed</p>
+                    <p>Emergency: 24/7 Available</p>
+                </div>
+            </div>
+
+            <div class="feedback-form">
+                <h3>Send Us Feedback or Complaint</h3>
+                <form onsubmit="submitFeedback(event)">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>District</label>
+                        <select required>
+                            <option value="">Select District</option>
+                            <option value="bhojpur">Bhojpur</option>
+                            <option value="dhankuta">Dhankuta</option>
+                            <option value="ilam">Ilam</option>
+                            <option value="jhapa">Jhapa</option>
+                            <option value="khotang">Khotang</option>
+                            <option value="morang">Morang</option>
+                            <option value="okhaldhunga">Okhaldhunga</option>
+                            <option value="panchthar">Panchthar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea placeholder="Your message..." rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2026 Koshi Province Information Portal. All rights reserved.</p>
+    <p>Government of Nepal | Koshi Province Administration</p>
+    <p>Designed for seamless access to provincial information and services</p>
+</footer>
 
 <script src="js/koshi.js"></script>
 </body>
