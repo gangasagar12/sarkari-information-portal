@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>मधेश प्रदेश — Madhesh Province Official Portal</title>
+  <meta name="description" content="Official government portal for Madhesh Province — districts, municipalities, wards, and citizen services.">
+  <meta name="theme-color" content="#B94010">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/madhesh.css">
+</head>
+<body>
+
+<!-- Mobile app banner -->
+<div class="app-banner" id="appBanner">
+  <div style="font-size:1.4rem">📱</div>
+  <div class="app-banner-text"><strong>मधेश प्रदेश App</strong>Faster access on your phone</div>
+  <button class="app-banner-close" id="bannerClose">✕</button>
+</div>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="topbar-dot"></div>
+    <span>Government of Nepal · Madhesh Province Official Portal</span>
+  </div>
+  <div class="topbar-right">
+    <a href="#" onclick="navigateTo('contact');return false;">Help Desk</a>
+    <a href="#" onclick="navigateTo('services');return false;">e-Services</a>
+    <a href="#">मैथिली</a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="header" id="mainHeader">
+  <div class="header-inner">
+    <a class="logo" href="#" onclick="navigateTo('home');return false;">
+      <div class="logo-icon">म</div>
+      <div>
+        <div class="logo-devanagari">मधेश प्रदेश</div>
+        <div class="logo-english">Madhesh Province Portal</div>
+      </div>
+    </a>
+    <nav class="nav">
+      <a class="nav-link active" onclick="navigateTo('home')">Home</a>
+      <a class="nav-link" onclick="navigateTo('about')">About</a>
+      <a class="nav-link" onclick="navigateTo('districts')">Districts</a>
+      <a class="nav-link" onclick="navigateTo('municipalities')">Municipalities</a>
+      <a class="nav-link" onclick="navigateTo('wards')">Wards</a>
+      <a class="nav-link" onclick="navigateTo('services')">Services</a>
+      <a class="nav-link nav-cta" onclick="navigateTo('contact')">Contact</a>
+    </nav>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<nav class="mobile-drawer" id="mobileDrawer">
+  <a class="nav-link" onclick="navigateTo('home')">🏠 Home</a>
+  <a class="nav-link" onclick="navigateTo('about')">ℹ️ About Province</a>
+  <a class="nav-link" onclick="navigateTo('districts')">🗺️ Districts</a>
+  <a class="nav-link" onclick="navigateTo('municipalities')">🏘️ Municipalities</a>
+  <a class="nav-link" onclick="navigateTo('wards')">📍 Wards</a>
+  <a class="nav-link" onclick="navigateTo('services')">📋 Services</a>
+  <a class="nav-link nav-cta" onclick="navigateTo('contact')">📞 Contact</a>
+</nav>
+
+<!-- HERO — clean split layout -->
+<div class="hero">
+  <!-- Left: dark panel with all text -->
+  <div class="hero-left">
+    <div class="hero-badge">Official Government Portal · Est. 2015</div>
+    <h1 class="hero-title">
+      मधेश प्रदेश<br>
+      <em>Madhesh Province</em>
+    </h1>
+    <p class="hero-subtitle">The fertile heartland of Nepal's Terai — comprehensive administrative information and citizen services for Madhesh Province.</p>
+    <div class="hero-actions">
+      <button class="btn-hero-primary" onclick="navigateTo('districts')">Explore Districts ↗</button>
+      <button class="btn-hero-outline" onclick="navigateTo('services')">Government Services</button>
+    </div>
+    <div class="hero-stat-row">
+      <div class="h-stat" onclick="navigateTo('districts')">
+        <div class="h-stat-num">8</div>
+        <div class="h-stat-lbl">Districts</div>
+      </div>
+      <div class="h-stat" onclick="navigateTo('municipalities')">
+        <div class="h-stat-num">136</div>
+        <div class="h-stat-lbl">Municipalities</div>
+      </div>
+      <div class="h-stat" onclick="navigateTo('wards')">
+        <div class="h-stat-num">1,172</div>
+        <div class="h-stat-lbl">Wards</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-stat-num">6.1M</div>
+        <div class="h-stat-lbl">Population</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: image panel -->
+  <div class="hero-right">
+    <div class="hero-img"></div>
+    <div class="hero-img-overlay"></div>
+    <div class="hero-img-tag">Janakpur · Province Capital</div>
+    <div class="hero-img-badge">Janaki Temple, Dhanusha</div>
+  </div>
+</div>
+
+<!-- Search Bar -->
+<div class="search-bar">
+  <div class="search-bar-inner">
+    <span class="search-pill">Quick Search</span>
+    <div class="s-field">
+      <span class="s-icon">🔍</span>
+      <input type="text" id="globalSearch" placeholder="Search district, municipality or ward...">
+      <button class="s-btn" onclick="performSearch()">Search</button>
+    </div>
+    <div id="searchResults" class="hidden"></div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main>
+
+<!-- HOME -->
+<section id="home" class="content-section active">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Province Overview</div>
+      <h2 class="section-title">Madhesh Province at a Glance</h2>
+      <p class="section-desc">A comprehensive look at the administrative structure, demographics, and key facts about Madhesh Province.</p>
+    </div>
+
+    <div class="stat-banner reveal">
+      <div class="stat-item" onclick="navigateTo('districts')">
+        <div class="stat-num">8</div><div class="stat-lbl">Districts</div>
+      </div>
+      <div class="stat-item" onclick="navigateTo('municipalities')">
+        <div class="stat-num">136</div><div class="stat-lbl">Municipalities</div>
+      </div>
+      <div class="stat-item" onclick="navigateTo('wards')">
+        <div class="stat-num">1,172</div><div class="stat-lbl">Total Wards</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">6.1M</div><div class="stat-lbl">Population</div>
+      </div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card reveal d1">
+        <div class="info-card-icon">📍</div>
+        <h3>Location & Geography</h3>
+        <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Janakpur (Dhanusha)</span></div>
+        <div class="data-row"><span class="data-label">Area</span><span class="data-value">9,661 sq km</span></div>
+        <div class="data-row"><span class="data-label">Region</span><span class="data-value">South-Central Nepal</span></div>
+        <div class="data-row"><span class="data-label">Terrain</span><span class="data-value">Flat Terai Plains</span></div>
+        <div class="data-row"><span class="data-label">Borders</span><span class="data-value">India, Bagmati, Koshi, Lumbini</span></div>
+      </div>
+      <div class="info-card reveal d2">
+        <div class="info-card-icon">👥</div>
+        <h3>Demographics</h3>
+        <div class="data-row"><span class="data-label">Population</span><span class="data-value">6,126,288</span></div>
+        <div class="data-row"><span class="data-label">Density</span><span class="data-value">634 per sq km</span></div>
+        <div class="data-row"><span class="data-label">Literacy Rate</span><span class="data-value">66.3%</span></div>
+        <div class="data-row"><span class="data-label">Census Year</span><span class="data-value">2021</span></div>
+        <div class="data-row"><span class="data-label">Gender Ratio</span><span class="data-value">103:100 (M:F)</span></div>
+      </div>
+      <div class="info-card reveal d3">
+        <div class="info-card-icon">🏛️</div>
+        <h3>Administration</h3>
+        <div class="data-row"><span class="data-label">Assembly Members</span><span class="data-value">107</span></div>
+        <div class="data-row"><span class="data-label">Districts</span><span class="data-value">8</span></div>
+        <div class="data-row"><span class="data-label">Municipalities</span><span class="data-value">136</span></div>
+        <div class="data-row"><span class="data-label">Total Wards</span><span class="data-value">1,172</span></div>
+        <div class="data-row"><span class="data-label">HQ</span><span class="data-value">Janakpur</span></div>
+      </div>
+      <div class="info-card reveal d1">
+        <div class="info-card-icon">🌾</div>
+        <h3>Economy</h3>
+        <div class="data-row"><span class="data-label">Primary</span><span class="data-value">Agriculture</span></div>
+        <div class="data-row"><span class="data-label">Industry</span><span class="data-value">Trade, Manufacturing, Sugar</span></div>
+        <div class="data-row"><span class="data-label">Key Crops</span><span class="data-value">Rice, Wheat, Sugarcane, Jute</span></div>
+        <div class="data-row"><span class="data-label">Trade Hub</span><span class="data-value">Birgunj (Customs HQ)</span></div>
+      </div>
+      <div class="info-card reveal d2">
+        <div class="info-card-icon">📚</div>
+        <h3>Education</h3>
+        <div class="data-row"><span class="data-label">Universities</span><span class="data-value">1 Central</span></div>
+        <div class="data-row"><span class="data-label">Colleges</span><span class="data-value">200+</span></div>
+        <div class="data-row"><span class="data-label">Enrolment</span><span class="data-value">900,000+</span></div>
+        <div class="data-row"><span class="data-label">Programs</span><span class="data-value">Active Province-wide</span></div>
+      </div>
+      <div class="info-card reveal d3">
+        <div class="info-card-icon">🏥</div>
+        <h3>Healthcare</h3>
+        <div class="data-row"><span class="data-label">District Hospitals</span><span class="data-value">8</span></div>
+        <div class="data-row"><span class="data-label">Health Centers</span><span class="data-value">250+</span></div>
+        <div class="data-row"><span class="data-label">Coverage</span><span class="data-value">95% Population</span></div>
+        <div class="data-row"><span class="data-label">Network</span><span class="data-value">Extensive Province-wide</span></div>
+      </div>
+    </div>
+
+    <div class="features-strip reveal">
+      <div class="feature-card d1">
+        <div class="fc-icon">🔔</div>
+        <h4>Live Announcements</h4>
+        <p>Latest news, tenders, and updates from the province administration in real time.</p>
+      </div>
+      <div class="feature-card d2">
+        <div class="fc-icon">📍</div>
+        <h4>Office Locator</h4>
+        <p>Find contacts for all district, municipality, and ward offices across Madhesh.</p>
+      </div>
+      <div class="feature-card d3">
+        <div class="fc-icon">📄</div>
+        <h4>Online Services</h4>
+        <p>Apply for certificates, permits, and government documents from any device.</p>
+      </div>
+      <div class="feature-card d4">
+        <div class="fc-icon">📊</div>
+        <h4>Data & Reports</h4>
+        <p>Census data, development budgets, project reports, and official statistics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="content-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Provincial Profile</div>
+      <h2 class="section-title">About Madhesh Province</h2>
+      <p class="section-desc">Detailed administrative, demographic, and economic information about Madhesh Province.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-card reveal d1"><h3>📍 Location & Geography</h3>
+        <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Janakpur</span></div>
+        <div class="data-row"><span class="data-label">Area</span><span class="data-value">9,661 sq km</span></div>
+        <div class="data-row"><span class="data-label">Region</span><span class="data-value">South-Central Nepal</span></div>
+        <div class="data-row"><span class="data-label">Terrain</span><span class="data-value">Flat Terai, Siwalik Foothills</span></div>
+      </div>
+      <div class="about-card reveal d2"><h3>👥 Demographics</h3>
+        <div class="data-row"><span class="data-label">Population</span><span class="data-value">6,126,288</span></div>
+        <div class="data-row"><span class="data-label">Density</span><span class="data-value">634 / sq km</span></div>
+        <div class="data-row"><span class="data-label">Literacy</span><span class="data-value">66.3%</span></div>
+        <div class="data-row"><span class="data-label">M/F Ratio</span><span class="data-value">103:100</span></div>
+      </div>
+      <div class="about-card reveal d3"><h3>🏛️ Administration</h3>
+        <div class="data-row"><span class="data-label">Assembly Members</span><span class="data-value">107</span></div>
+        <div class="data-row"><span class="data-label">Districts</span><span class="data-value">8</span></div>
+        <div class="data-row"><span class="data-label">Headquarters</span><span class="data-value">Janakpur</span></div>
+        <div class="data-row"><span class="data-label">Municipalities</span><span class="data-value">136</span></div>
+      </div>
+      <div class="about-card reveal d1"><h3>🌾 Economy</h3>
+        <div class="data-row"><span class="data-label">Industries</span><span class="data-value">Agriculture, Trade, Sugar</span></div>
+        <div class="data-row"><span class="data-label">Major Crops</span><span class="data-value">Rice, Wheat, Sugarcane, Jute</span></div>
+        <div class="data-row"><span class="data-label">Key Cities</span><span class="data-value">Birgunj, Janakpur, Lahan</span></div>
+      </div>
+      <div class="about-card reveal d2"><h3>📚 Education</h3>
+        <div class="data-row"><span class="data-label">Universities</span><span class="data-value">1 Central University</span></div>
+        <div class="data-row"><span class="data-label">Colleges</span><span class="data-value">200+</span></div>
+        <div class="data-row"><span class="data-label">School Enrolment</span><span class="data-value">900,000+</span></div>
+      </div>
+      <div class="about-card reveal d3"><h3>🏥 Healthcare</h3>
+        <div class="data-row"><span class="data-label">District Hospitals</span><span class="data-value">8</span></div>
+        <div class="data-row"><span class="data-label">Health Centers</span><span class="data-value">250+</span></div>
+        <div class="data-row"><span class="data-label">Coverage</span><span class="data-value">95% Population</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISTRICTS -->
+<section id="districts" class="content-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Administrative Divisions</div>
+      <h2 class="section-title">Districts of Madhesh Province</h2>
+      <p class="section-desc">8 districts spanning the fertile Terai plains with complete administrative and geographic information.</p>
+    </div>
+    <div class="filter-row reveal">
+      <div class="filter-wrap">
+        <input type="text" id="districtFilter" placeholder="Filter by name or headquarter..." oninput="filterDistricts()">
+        <span class="filter-count" id="districtCount">8 of 8</span>
+      </div>
+    </div>
+    <div class="districts-grid" id="districtsGrid"></div>
+  </div>
+</section>
+
+<!-- MUNICIPALITIES -->
+<section id="municipalities" class="content-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Local Government</div>
+      <h2 class="section-title">Municipalities</h2>
+      <p class="section-desc">136 municipalities across 8 districts — the most densely governed province of Nepal.</p>
+    </div>
+    <div class="muni-type-grid reveal">
+      <div class="muni-type-card d1"><span class="muni-icon">🌟</span><div class="muni-num">1</div><div class="muni-name">Metropolitan City</div><div class="muni-desc">Birgunj Metropolitan</div></div>
+      <div class="muni-type-card d2"><span class="muni-icon">🏙️</span><div class="muni-num">5</div><div class="muni-name">Sub-metropolitan</div><div class="muni-desc">Janakpur, Kalaiya & others</div></div>
+      <div class="muni-type-card d3"><span class="muni-icon">🏘️</span><div class="muni-num">44</div><div class="muni-name">Municipal Cities</div><div class="muni-desc">Urban municipalities</div></div>
+      <div class="muni-type-card d4"><span class="muni-icon">🌾</span><div class="muni-num">86</div><div class="muni-name">Rural Municipalities</div><div class="muni-desc">Gaun Palika units</div></div>
+    </div>
+    <div class="muni-governance reveal">
+      <h3>Municipal Governance in Madhesh Province</h3>
+      <ul class="gov-list">
+        <li><strong>Service Delivery</strong> — Healthcare, education, sanitation, and local infrastructure across Terai settlements</li>
+        <li><strong>Revenue Collection</strong> — Local tax, fee collection, and fiscal management</li>
+        <li><strong>Permits & Licenses</strong> — Building permits, business registrations, certifications</li>
+        <li><strong>Social Welfare</strong> — Allowances, community programs, cultural and religious events</li>
+        <li><strong>Development Planning</strong> — Annual plans, capital projects, irrigation and road monitoring</li>
+        <li><strong>Citizen Services</strong> — Birth, death, marriage registration and certificates</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WARDS -->
+<section id="wards" class="content-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Grassroots Administration</div>
+      <h2 class="section-title">Wards Information</h2>
+      <p class="section-desc">1,172 wards — the smallest administrative units delivering direct citizen services across Madhesh Province.</p>
+    </div>
+    <div class="wards-layout reveal">
+      <div class="ward-stat-card">
+        <div class="ward-big-num">1,172</div>
+        <div class="ward-big-lbl">Total Wards</div>
+        <div class="ward-div"></div>
+        <div class="ward-avg-num">9</div>
+        <div class="ward-avg-lbl">Avg Wards / Municipality</div>
+      </div>
+      <div class="ward-info-col">
+        <div class="ward-info-box">
+          <h4>📋 Ward Structure</h4>
+          <ul>
+            <li><strong>Ward President</strong> — Elected representative</li>
+            <li><strong>Ward Members</strong> — Committee representatives</li>
+            <li><strong>Ward Secretary</strong> — Administrative staff</li>
+            <li><strong>Admin Level</strong> — Grassroots governance unit</li>
+          </ul>
+        </div>
+        <div class="ward-info-box">
+          <h4>⚙️ Key Services</h4>
+          <ul>
+            <li>Birth, death & marriage registration</li>
+            <li>Building permits & approvals</li>
+            <li>Local tax collection</li>
+            <li>Citizen entitlements & welfare</li>
+          </ul>
+        </div>
+        <div class="ward-info-box">
+          <h4>🕐 Office Hours</h4>
+          <ul>
+            <li><strong>Days:</strong> Sunday – Friday</li>
+            <li><strong>Time:</strong> 10:00 AM – 5:00 PM</li>
+            <li><strong>Holiday:</strong> Saturday closed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ward-finder reveal">
+      <h3>Find Your Ward Office</h3>
+      <div class="search-field">
+        <input type="text" id="wardSearch" placeholder="Enter district and ward number...">
+        <button onclick="searchWard()">Find Ward</button>
+      </div>
+      <div id="wardResults" class="hidden"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="content-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Citizen Services</div>
+      <h2 class="section-title">Government Services</h2>
+      <p class="section-desc">Online and offline services available across all districts of Madhesh Province.</p>
+    </div>
+    <div class="service-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('registration',this)">Registration</button>
+      <button class="tab-btn" onclick="switchTab('permits',this)">Permits & Licenses</button>
+      <button class="tab-btn" onclick="switchTab('certificates',this)">Certificates</button>
+      <button class="tab-btn" onclick="switchTab('welfare',this)">Welfare Programs</button>
+    </div>
+
+    <div class="service-content active-tab" id="registrationTab">
+      <h3>Registration Services</h3>
+      <div class="service-grid">
+        <div class="service-card"><div class="sc-top"><h4>📝 Birth Registration</h4><p>Register newborn within 35 days</p></div><div class="sc-body"><ul><li>Hospital Certificate, Parents' Citizenship</li><li>Processing Time: 3–5 days</li><li>Fee: NPR 100</li><li>Location: Ward Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Birth Registration')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>💒 Marriage Registration</h4><p>Register marriage within 35 days</p></div><div class="sc-body"><ul><li>Both parties' Citizenship, 2 Witnesses</li><li>Processing Time: 3–5 days</li><li>Fee: NPR 300</li><li>Location: Ward / District Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Marriage Registration')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>⚰️ Death Certificate</h4><p>Official death certificate issuance</p></div><div class="sc-body"><ul><li>Medical Report, 2 Witnesses</li><li>Processing Time: 1–2 days</li><li>Fee: NPR 50</li><li>Location: Ward Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Death Certificate')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>🪪 Citizenship Certificate</h4><p>Citizenship by birth or naturalization</p></div><div class="sc-body"><ul><li>Parents' Citizenship, Birth Proof</li><li>Processing Time: 7–10 days</li><li>Fee: NPR 200</li><li>Location: District Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Citizenship')">Apply Now</button></div></div>
+      </div>
+    </div>
+
+    <div class="service-content" id="permitsTab">
+      <h3>Permits & Licenses</h3>
+      <div class="service-grid">
+        <div class="service-card"><div class="sc-top"><h4>🏗️ Building Permit</h4><p>Permission for construction</p></div><div class="sc-body"><ul><li>Land Deed, Design Plans, Ownership Proof</li><li>Processing Time: 15–30 days</li><li>Fee: Variable (based on area)</li><li>Location: Municipality Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Building Permit')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>🚗 Vehicle License</h4><p>Vehicle registration & licensing</p></div><div class="sc-body"><ul><li>Purchase Bill, Ownership Proof, Insurance</li><li>Processing Time: 5–7 days</li><li>Fee: Variable</li><li>Location: District Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Vehicle License')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>🏪 Business License</h4><p>Permission for business operations</p></div><div class="sc-body"><ul><li>Application, Citizenship, Address Proof</li><li>Processing Time: 7–10 days</li><li>Fee: NPR 1,000–10,000</li><li>Location: Municipality Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Business License')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>📋 Trade License</h4><p>License for trade and commerce</p></div><div class="sc-body"><ul><li>Application, PAN, Citizenship</li><li>Processing Time: 5–10 days</li><li>Fee: NPR 1,500–15,000</li><li>Location: Municipality / Birgunj</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Trade License')">Apply Now</button></div></div>
+      </div>
+    </div>
+
+    <div class="service-content" id="certificatesTab">
+      <h3>Certificates & Documents</h3>
+      <div class="service-grid">
+        <div class="service-card"><div class="sc-top"><h4>📄 Character Certificate</h4><p>Official character certificate</p></div><div class="sc-body"><ul><li>Citizenship, Photo</li><li>Processing Time: 3–5 days</li><li>Fee: NPR 200</li><li>Location: Ward / Police Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Character Certificate')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>📖 Domicile Certificate</h4><p>Proof of residence certificate</p></div><div class="sc-body"><ul><li>Citizenship, Address Proof, Bill</li><li>Processing Time: 1–3 days</li><li>Fee: NPR 100</li><li>Location: Ward Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Domicile Certificate')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>🏠 Land Ownership</h4><p>Property ownership documentation</p></div><div class="sc-body"><ul><li>Deed, Ownership Papers</li><li>Processing Time: 10–15 days</li><li>Fee: NPR 1,000</li><li>Location: District Land Office</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Land Certificate')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>📋 Income Certificate</h4><p>Official income documentation</p></div><div class="sc-body"><ul><li>Application, Tax Papers, Citizenship</li><li>Processing Time: 5–7 days</li><li>Fee: NPR 300</li><li>Location: Ward / Municipality</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Income Certificate')">Apply Now</button></div></div>
+      </div>
+    </div>
+
+    <div class="service-content" id="welfareTab">
+      <h3>Welfare Programs & Schemes</h3>
+      <div class="service-grid">
+        <div class="service-card"><div class="sc-top"><h4>💰 Old Age Allowance</h4><p>Monthly allowance for senior citizens</p></div><div class="sc-body"><ul><li>Eligibility: Age 60+ years</li><li>Monthly Benefit: NPR 3,000</li><li>Application: Ward Office</li><li>Documents: Citizenship, Age Proof</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Old Age Allowance')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>👩 Single Women Allowance</h4><p>Support for single, divorced, widowed</p></div><div class="sc-body"><ul><li>Eligibility: Single / widowed women</li><li>Monthly Benefit: NPR 2,000</li><li>Application: Ward Office</li><li>Documents: Citizenship, Status Proof</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Single Women Allowance')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>♿ Disability Allowance</h4><p>Support for disabled persons</p></div><div class="sc-body"><ul><li>Eligibility: 40%+ disability</li><li>Monthly Benefit: NPR 2,000</li><li>Application: Ward Office</li><li>Documents: Medical Certificate</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Disability Allowance')">Apply Now</button></div></div>
+        <div class="service-card"><div class="sc-top"><h4>👶 Child Grant</h4><p>Support for disadvantaged children</p></div><div class="sc-body"><ul><li>Eligibility: Children up to 18 years</li><li>Monthly Benefit: NPR 400–600</li><li>Application: Ward Office</li><li>Documents: Birth Certificate</li></ul></div><div class="sc-foot"><button class="btn-apply" onclick="applyService('Child Grant')">Apply Now</button></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="content-section">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <div class="section-kicker">Get in Touch</div>
+      <h2 class="section-title">Contact Administration</h2>
+      <p class="section-desc">Reach Madhesh Province administration via email, phone, or our feedback form.</p>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-cards">
+        <div class="contact-card reveal d1"><div class="cc-icon">📧</div><div class="cc-text"><h4>Email</h4><p><strong>info@madheshprovince.gov.np</strong><br>admin@madheshprovince.gov.np</p></div></div>
+        <div class="contact-card reveal d2"><div class="cc-icon">📞</div><div class="cc-text"><h4>Telephone</h4><p><strong>+977 (41) 523-4000</strong><br>+977 (41) 523-4001</p></div></div>
+        <div class="contact-card reveal d3"><div class="cc-icon">🏛️</div><div class="cc-text"><h4>Office Address</h4><p><strong>Provincial Governor's Office</strong><br>Janakpur, Dhanusha District<br>Madhesh Province, Nepal</p></div></div>
+        <div class="contact-card reveal d4"><div class="cc-icon">🕐</div><div class="cc-text"><h4>Office Hours</h4><p><strong>Sun – Fri: 10:00 AM – 5:00 PM</strong><br>Saturday: Closed · Emergency: 24/7</p></div></div>
+      </div>
+      <div class="feedback-panel reveal">
+        <h3>Send Feedback or Complaint</h3>
+        <form onsubmit="submitFeedback(event)">
+          <div class="form-row">
+            <div class="form-field"><label>Full Name</label><input type="text" placeholder="Your full name" required></div>
+            <div class="form-field"><label>Email Address</label><input type="email" placeholder="your@email.com" required></div>
+            <div class="form-field">
+              <label>District</label>
+              <select required>
+                <option value="">Select district</option>
+                <option>Saptari</option><option>Siraha</option><option>Dhanusha</option>
+                <option>Mahottari</option><option>Sarlahi</option><option>Rautahat</option>
+                <option>Bara</option><option>Parsa</option>
+              </select>
+            </div>
+            <div class="form-field"><label>Subject</label><input type="text" placeholder="Brief subject" required></div>
+            <div class="form-field span-2"><label>Message</label><textarea placeholder="Describe your feedback or complaint in detail..." required></textarea></div>
+          </div>
+          <button type="submit" class="btn-submit">Submit Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="f-logo">मधेश प्रदेश</div>
+        <p>Official information portal for Madhesh Province — Government of Nepal. Providing transparent, accessible administrative data and citizen services.</p>
+      </div>
+      <div class="footer-col"><h5>Navigate</h5><ul>
+        <li onclick="navigateTo('home')">Home</li>
+        <li onclick="navigateTo('about')">About Province</li>
+        <li onclick="navigateTo('districts')">Districts</li>
+        <li onclick="navigateTo('municipalities')">Municipalities</li>
+      </ul></div>
+      <div class="footer-col"><h5>Services</h5><ul>
+        <li onclick="navigateTo('services')">Registration</li>
+        <li onclick="navigateTo('services')">Permits</li>
+        <li onclick="navigateTo('services')">Certificates</li>
+        <li onclick="navigateTo('services')">Welfare</li>
+      </ul></div>
+      <div class="footer-col"><h5>Information</h5><ul>
+        <li onclick="navigateTo('wards')">Wards</li>
+        <li onclick="navigateTo('contact')">Contact</li>
+        <li>Privacy Policy</li>
+        <li>Accessibility</li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 <span class="footer-gold">Madhesh Province Administration</span> · Government of Nepal</span>
+      <span>Ministry of Home Affairs · All rights reserved</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/madhesh.js"></script>
+</body>
+</html>

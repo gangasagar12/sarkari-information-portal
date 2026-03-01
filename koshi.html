@@ -3,591 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koshi Province Information Portal - Nepal</title>
-    <meta name="description" content="Official information portal for Koshi Province including districts, municipalities, wards, services and development projects.">
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <title>कोशी प्रदेश — Koshi Province Official Portal</title>
+    <meta name="description" content="Official information portal for Koshi Province — districts, municipalities, wards, services and administration.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/koshi.css">
 </head>
 <body>
 
-<!-- Header -->
-<header class="header">
-    <a class="logo" href="#home">
-        <span class="logo-icon">🏛️</span>
-        कोशी प्रदेश
-        <small>Koshi Province Portal</small>
-    </a>
-    <nav class="navbar">
-        <a href="#home" class="nav-link active" onclick="navigateTo('home')">Home</a>
-        <a href="#about" class="nav-link" onclick="navigateTo('about')">About</a>
-        <a href="#districts" class="nav-link" onclick="navigateTo('districts')">Districts</a>
-        <a href="#municipalities" class="nav-link" onclick="navigateTo('municipalities')">Municipalities</a>
-        <a href="#wards" class="nav-link" onclick="navigateTo('wards')">Wards</a>
-        <a href="#services" class="nav-link" onclick="navigateTo('services')">Services</a>
-        <a href="#contact" class="nav-link" onclick="navigateTo('contact')">Contact</a>
-    </nav>
-    <button class="hamburger" id="hamburger" aria-label="menu">
-        <i class="bx bx-menu"></i>
-    </button>
+<!-- =============================================
+   TOPBAR
+============================================= -->
+<div class="topbar">
+    <div class="topbar-left">
+        <div class="topbar-dot"></div>
+        <span>Government of Nepal — Koshi Province Official Portal</span>
+    </div>
+    <div class="topbar-right">
+        <a href="#contact" onclick="navigateTo('contact'); return false;">Help Desk</a>
+        <a href="#services" onclick="navigateTo('services'); return false;">e-Services</a>
+        <a href="#">नेपाली</a>
+    </div>
+</div>
+
+<!-- =============================================
+   HEADER
+============================================= -->
+<header class="header" id="mainHeader">
+    <div class="header-inner">
+        <a class="logo" href="#home" onclick="navigateTo('home'); return false;">
+            <div class="logo-text">
+                <div class="logo-devanagari">कोशी प्रदेश</div>
+                <div class="logo-english">Koshi Province Portal</div>
+            </div>
+        </a>
+        <nav class="nav" id="mainNav">
+            <a class="nav-link active" onclick="navigateTo('home')">Home</a>
+            <a class="nav-link" onclick="navigateTo('about')">About</a>
+            <a class="nav-link" onclick="navigateTo('districts')">Districts</a>
+            <a class="nav-link" onclick="navigateTo('municipalities')">Municipalities</a>
+            <a class="nav-link" onclick="navigateTo('wards')">Wards</a>
+            <a class="nav-link" onclick="navigateTo('services')">Services</a>
+            <a class="nav-link nav-cta" onclick="navigateTo('contact')">Contact</a>
+        </nav>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
 </header>
 
-<!-- Image Container -->
-<div class="image-container">
-    <img src="images/koshi.png" alt="Koshi Province" loading="lazy">
-    <div class="image-overlay">
-        <h1>Welcome to Koshi Province</h1>
-        <p>Eastern Gateway of Nepal</p>
+<!-- =============================================
+   HERO
+============================================= -->
+<div class="hero" id="heroSection">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-badge">Official Government Portal · Est. 2015</div>
+        <h1 class="hero-title">
+            कोशी प्रदेश<br>
+            <em>Koshi Province</em>
+        </h1>
+        <p class="hero-subtitle">Eastern Gateway of Nepal — Comprehensive administrative information and citizen services for Koshi Province.</p>
+        <div class="hero-actions">
+            <button class="btn-primary" onclick="navigateTo('districts')">
+                Explore Districts ↗
+            </button>
+            <button class="btn-outline" onclick="navigateTo('services')">
+                Government Services
+            </button>
+        </div>
+    </div>
+    <div class="hero-stats">
+        <div class="hero-stats-inner">
+            <div class="hero-stat" onclick="navigateTo('districts')">
+                <div class="hero-stat-number">8</div>
+                <div class="hero-stat-label">Districts</div>
+            </div>
+            <div class="hero-stat" onclick="navigateTo('municipalities')">
+                <div class="hero-stat-number">87</div>
+                <div class="hero-stat-label">Municipalities</div>
+            </div>
+            <div class="hero-stat" onclick="navigateTo('wards')">
+                <div class="hero-stat-number">734</div>
+                <div class="hero-stat-label">Wards</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-number">2.5M</div>
+                <div class="hero-stat-label">Population</div>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Search Section -->
-<div class="search-section">
-    <h2>Search District, Municipality or Ward</h2>
-    <div class="search-box">
-        <input type="text" id="globalSearch" placeholder="Enter District, Municipality or Ward Name...">
-        <button onclick="performSearch()">Search</button>
+<!-- =============================================
+   SEARCH
+============================================= -->
+<div class="search-section" id="searchSection">
+    <div class="search-inner">
+        <span class="search-label">Quick Search</span>
+        <div class="search-field">
+            <input type="text" id="globalSearch" placeholder="Enter district, municipality, or ward name...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+        <div id="searchResults" class="hidden"></div>
     </div>
-    <div id="searchResults" class="search-results hidden"></div>
 </div>
 
-<!-- Main Content Wrapper -->
-<div class="main-content">
+<!-- =============================================
+   MAIN CONTENT
+============================================= -->
+<main>
 
-    <!-- Home Section -->
-    <section id="home" class="content-section active">
-        <div class="section-container">
-            <div class="welcome-section">
-                <h2>कोशी प्रदेश सूचना पोर्टल</h2>
-                <p>Comprehensive Information Portal for Koshi Province Administration</p>
-            </div>
+<!-- HOME -->
+<section id="home" class="content-section active">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Province Overview</div>
+            <h2 class="section-title">Koshi Province at a Glance</h2>
+            <p class="section-desc">A comprehensive look at the administrative structure, demographics, and key facts about Koshi Province.</p>
+        </div>
 
-            <div class="stats-grid">
-                <div class="stat-card" onclick="navigateTo('districts')">
-                    <span class="stat-icon">📍</span>
-                    <h3>8</h3>
-                    <p>Districts</p>
-                    <small>Bhojpur, Dhankuta, Ilam, Jhapa, Khotang, Morang, Okhaldhunga, Panchthar, Taplejung, Terhathum, Udayapur, Sunsari</small>
-                </div>
-
-                <div class="stat-card" onclick="navigateTo('municipalities')">
-                    <span class="stat-icon">🏘️</span>
-                    <h3>87</h3>
-                    <p>Municipalities</p>
-                    <small>Including 1 Metropolis, 8 Sub-metropolitan, 18 Municipal Cities</small>
-                </div>
-
-                <div class="stat-card" onclick="navigateTo('wards')">
-                    <span class="stat-icon">🏠</span>
-                    <h3>734</h3>
-                    <p>Total Wards</p>
-                    <small>Grassroots administrative units across all municipalities</small>
-                </div>
-
-                <div class="stat-card" onclick="navigateTo('services')">
-                    <span class="stat-icon">📋</span>
-                    <h3>50+</h3>
-                    <p>Services Available</p>
-                    <small>Online and offline government services</small>
+        <div class="about-grid">
+            <div class="about-card reveal reveal-delay-1">
+                <div class="about-card-icon">📍</div>
+                <h3>Location & Geography</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Biratnagar</span></div>
+                    <div class="data-row"><span class="data-label">Area</span><span class="data-value">12,262 sq km</span></div>
+                    <div class="data-row"><span class="data-label">Region</span><span class="data-value">Eastern Nepal</span></div>
+                    <div class="data-row"><span class="data-label">Terrain</span><span class="data-value">Terai to Himalayan</span></div>
+                    <div class="data-row"><span class="data-label">Bordering</span><span class="data-value">India, China, Madhesh</span></div>
                 </div>
             </div>
-
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🗓️</span>
-                    <h4>Quick Updates</h4>
-                    <p>Get latest news, announcements and updates from Koshi Province administration</p>
+            <div class="about-card reveal reveal-delay-2">
+                <div class="about-card-icon">👥</div>
+                <h3>Demographics</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Population</span><span class="data-value">2,543,897</span></div>
+                    <div class="data-row"><span class="data-label">Density</span><span class="data-value">207 per sq km</span></div>
+                    <div class="data-row"><span class="data-label">Literacy Rate</span><span class="data-value">72.4%</span></div>
+                    <div class="data-row"><span class="data-label">Census Year</span><span class="data-value">2021</span></div>
+                    <div class="data-row"><span class="data-label">Gender Ratio</span><span class="data-value">99:100 (M:F)</span></div>
                 </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">📍</span>
-                    <h4>Location Services</h4>
-                    <p>Find contact information for all district, municipality and ward offices</p>
+            </div>
+            <div class="about-card reveal reveal-delay-3">
+                <div class="about-card-icon">🏛️</div>
+                <h3>Administration</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Assembly</span><span class="data-value">88 Members</span></div>
+                    <div class="data-row"><span class="data-label">Districts</span><span class="data-value">8</span></div>
+                    <div class="data-row"><span class="data-label">Municipalities</span><span class="data-value">87</span></div>
+                    <div class="data-row"><span class="data-label">Total Wards</span><span class="data-value">734</span></div>
+                    <div class="data-row"><span class="data-label">HQ</span><span class="data-value">Biratnagar</span></div>
                 </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">📄</span>
-                    <h4>Online Services</h4>
-                    <p>Apply for certificates, permits, licenses and other government documents</p>
+            </div>
+            <div class="about-card reveal reveal-delay-1">
+                <div class="about-card-icon">🌾</div>
+                <h3>Economy</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Primary</span><span class="data-value">Agriculture</span></div>
+                    <div class="data-row"><span class="data-label">Industry</span><span class="data-value">Manufacturing, Trade</span></div>
+                    <div class="data-row"><span class="data-label">Key Crops</span><span class="data-value">Rice, Wheat, Jute</span></div>
+                    <div class="data-row"><span class="data-label">Major City</span><span class="data-value">Biratnagar</span></div>
                 </div>
-
-                <div class="feature-card">
-                    <span class="feature-icon">📊</span>
-                    <h4>Data & Reports</h4>
-                    <p>Access census data, budgets, development projects and official statistics</p>
+            </div>
+            <div class="about-card reveal reveal-delay-2">
+                <div class="about-card-icon">📚</div>
+                <h3>Education</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Universities</span><span class="data-value">2 Central</span></div>
+                    <div class="data-row"><span class="data-label">Colleges</span><span class="data-value">150+</span></div>
+                    <div class="data-row"><span class="data-label">Enrolment</span><span class="data-value">450,000+</span></div>
+                    <div class="data-row"><span class="data-label">Programs</span><span class="data-value">Active Across Province</span></div>
+                </div>
+            </div>
+            <div class="about-card reveal reveal-delay-3">
+                <div class="about-card-icon">🏥</div>
+                <h3>Healthcare</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Hospitals</span><span class="data-value">8 District</span></div>
+                    <div class="data-row"><span class="data-label">Health Centers</span><span class="data-value">150+</span></div>
+                    <div class="data-row"><span class="data-label">Coverage</span><span class="data-value">98% Population</span></div>
+                    <div class="data-row"><span class="data-label">Workers</span><span class="data-value">Extensive Network</span></div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- About Koshi Province -->
-    <section id="about" class="content-section">
-        <div class="section-container">
-            <h2>About Koshi Province</h2>
-            
-            <div class="about-grid">
-                <div class="about-card">
-                    <h3>📍 Location & Geography</h3>
-                    <p><strong>Capital:</strong> Biratnagar (Administrative)</p>
-                    <p><strong>Area:</strong> 12,262 sq km</p>
-                    <p><strong>Region:</strong> Eastern Nepal</p>
-                    <p><strong>Terrain:</strong> Terai, Siwalik, and Himalayan</p>
-                </div>
-
-                <div class="about-card">
-                    <h3>👥 Demography</h3>
-                    <p><strong>Population:</strong> 2,543,897 (2021 Census)</p>
-                    <p><strong>Population Density:</strong> 207 per sq km</p>
-                    <p><strong>Literacy Rate:</strong> 72.4%</p>
-                    <p><strong>Male/Female Ratio:</strong> 99:100</p>
-                </div>
-
-                <div class="about-card">
-                    <h3>🏛️ Administration</h3>
-                    <p><strong>Chief Minister:</strong> Provincial Chief Minister Office</p>
-                    <p><strong>Provincial Assembly:</strong> 88 Members</p>
-                    <p><strong>Administrative Divisions:</strong> 8 Districts</p>
-                    <p><strong>Headquarters:</strong> Biratnagar</p>
-                </div>
-
-                <div class="about-card">
-                    <h3>🌾 Economy</h3>
-                    <p><strong>Major Industries:</strong> Agriculture, Manufacturing, Trade</p>
-                    <p><strong>Crops:</strong> Rice, Wheat, Maize, Jute</p>
-                    <p><strong>Key Cities:</strong> Biratnagar, Jhapa, Ilam</p>
-                    <p><strong>Trade Partners:</strong> National & International</p>
-                </div>
-
-                <div class="about-card">
-                    <h3>📚 Education</h3>
-                    <p><strong>Universities:</strong> 2 Central Universities</p>
-                    <p><strong>Colleges:</strong> 150+ (Bachelor's & Master's)</p>
-                    <p><strong>School Enrolment:</strong> 450,000+</p>
-                    <p><strong>Literacy Programs:</strong> Active Across Province</p>
-                </div>
-
-                <div class="about-card">
-                    <h3>🏥 Health</h3>
-                    <p><strong>Health Facilities:</strong> 8 District Hospitals</p>
-                    <p><strong>Primary Health Centers:</strong> 150+</p>
-                    <p><strong>Health Workers:</strong> Extensive Network</p>
-                    <p><strong>Service Coverage:</strong> 98% Population</p>
-                </div>
+        <!-- Features Strip -->
+        <div class="features-strip reveal">
+            <div class="feature-item">
+                <span class="feature-item-icon">🔔</span>
+                <h4>Live Announcements</h4>
+                <p>Latest news, tenders, and updates from the province administration in real time.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-item-icon">📍</span>
+                <h4>Office Locator</h4>
+                <p>Find contacts for all district, municipality, and ward offices across Koshi.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-item-icon">📄</span>
+                <h4>Online Services</h4>
+                <p>Apply for certificates, permits, and government documents — from any device.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-item-icon">📊</span>
+                <h4>Data & Reports</h4>
+                <p>Census data, development budgets, project reports, and official statistics.</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Districts Section -->
-    <section id="districts" class="content-section">
-        <div class="section-container">
-            <h2>Districts of Koshi Province</h2>
-            <p class="section-subtitle">8 Districts with complete administrative information</p>
-
-            <div class="filter-bar">
-                <input type="text" id="districtFilter" placeholder="Filter districts..." onkeyup="filterContent('district')">
+<!-- ABOUT -->
+<section id="about" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Provincial Profile</div>
+            <h2 class="section-title">About Koshi Province</h2>
+            <p class="section-desc">Detailed administrative, demographic, and economic information about Koshi Province.</p>
+        </div>
+        <div class="about-detail-grid">
+            <div class="about-detail-card reveal reveal-delay-1">
+                <h3>📍 Location & Geography</h3>
+                <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Biratnagar</span></div>
+                <div class="data-row"><span class="data-label">Area</span><span class="data-value">12,262 sq km</span></div>
+                <div class="data-row"><span class="data-label">Region</span><span class="data-value">Eastern Nepal</span></div>
+                <div class="data-row"><span class="data-label">Terrain</span><span class="data-value">Terai, Siwalik, Himalayan</span></div>
             </div>
-
-            <div class="districts-grid" id="districtsGrid">
-                <!-- Districts will be dynamically loaded -->
+            <div class="about-detail-card reveal reveal-delay-2">
+                <h3>👥 Demographics</h3>
+                <div class="data-row"><span class="data-label">Population</span><span class="data-value">2,543,897</span></div>
+                <div class="data-row"><span class="data-label">Density</span><span class="data-value">207 / sq km</span></div>
+                <div class="data-row"><span class="data-label">Literacy</span><span class="data-value">72.4%</span></div>
+                <div class="data-row"><span class="data-label">M/F Ratio</span><span class="data-value">99:100</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-3">
+                <h3>🏛️ Administration</h3>
+                <div class="data-row"><span class="data-label">Assembly Members</span><span class="data-value">88</span></div>
+                <div class="data-row"><span class="data-label">Districts</span><span class="data-value">8</span></div>
+                <div class="data-row"><span class="data-label">Headquarters</span><span class="data-value">Biratnagar</span></div>
+                <div class="data-row"><span class="data-label">Municipalities</span><span class="data-value">87</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-1">
+                <h3>🌾 Economy</h3>
+                <div class="data-row"><span class="data-label">Industries</span><span class="data-value">Agriculture, Manufacturing</span></div>
+                <div class="data-row"><span class="data-label">Major Crops</span><span class="data-value">Rice, Wheat, Maize, Jute</span></div>
+                <div class="data-row"><span class="data-label">Key Cities</span><span class="data-value">Biratnagar, Jhapa, Ilam</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-2">
+                <h3>📚 Education</h3>
+                <div class="data-row"><span class="data-label">Universities</span><span class="data-value">2 Central</span></div>
+                <div class="data-row"><span class="data-label">Colleges</span><span class="data-value">150+</span></div>
+                <div class="data-row"><span class="data-label">School Enrolment</span><span class="data-value">450,000+</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-3">
+                <h3>🏥 Healthcare</h3>
+                <div class="data-row"><span class="data-label">District Hospitals</span><span class="data-value">8</span></div>
+                <div class="data-row"><span class="data-label">Health Centers</span><span class="data-value">150+</span></div>
+                <div class="data-row"><span class="data-label">Coverage</span><span class="data-value">98% Population</span></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Municipalities Section -->
-    <section id="municipalities" class="content-section">
-        <div class="section-container">
-            <h2>Municipalities of Koshi Province</h2>
-            <p class="section-subtitle">87 Municipalities across 8 Districts</p>
+<!-- DISTRICTS -->
+<section id="districts" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Administrative Divisions</div>
+            <h2 class="section-title">Districts of Koshi Province</h2>
+            <p class="section-desc">8 districts with complete administrative and geographic information.</p>
+        </div>
+        <div class="filter-row reveal">
+            <input type="text" class="filter-input" id="districtFilter" placeholder="Filter districts..." oninput="filterDistricts()">
+            <span class="filter-count" id="districtCount">8 districts</span>
+        </div>
+        <div class="districts-grid" id="districtsGrid"></div>
+    </div>
+</section>
 
-            <div class="municipality-filter">
-                <select id="municipalityDistrict" onchange="filterMunicipalities()">
-                    <option value="">All Districts</option>
-                    <option value="bhojpur">Bhojpur</option>
-                    <option value="dhankuta">Dhankuta</option>
-                    <option value="ilam">Ilam</option>
-                    <option value="jhapa">Jhapa</option>
-                    <option value="khotang">Khotang</option>
-                    <option value="morang">Morang</option>
-                    <option value="okhaldhunga">Okhaldhunga</option>
-                    <option value="panchthar">Panchthar</option>
-                </select>
-
-                <select id="municipalityType" onchange="filterMunicipalities()">
-                    <option value="">All Types</option>
-                    <option value="metropolis">Metropolis</option>
-                    <option value="sub-metropolitan">Sub-metropolitan</option>
-                    <option value="municipal">Municipal City</option>
-                    <option value="rural">Rural Municipality</option>
-                </select>
+<!-- MUNICIPALITIES -->
+<section id="municipalities" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Local Government</div>
+            <h2 class="section-title">Municipalities</h2>
+            <p class="section-desc">87 municipalities across 8 districts of Koshi Province.</p>
+        </div>
+        <div class="muni-types reveal">
+            <div class="muni-type-card reveal-delay-1">
+                <span class="muni-type-icon">🌟</span>
+                <div class="muni-type-num">1</div>
+                <div class="muni-type-name">Metropolitan City</div>
+                <div class="muni-type-desc">Biratnagar Metropolitan</div>
             </div>
-
-            <div class="municipalities-grid" id="municipalitiesGrid">
-                <!-- Municipalities will be dynamically loaded -->
+            <div class="muni-type-card reveal-delay-2">
+                <span class="muni-type-icon">🏙️</span>
+                <div class="muni-type-num">8</div>
+                <div class="muni-type-name">Sub-metropolitan</div>
+                <div class="muni-type-desc">Secondary urban centers</div>
+            </div>
+            <div class="muni-type-card reveal-delay-3">
+                <span class="muni-type-icon">🏘️</span>
+                <div class="muni-type-num">18</div>
+                <div class="muni-type-name">Municipal Cities</div>
+                <div class="muni-type-desc">Urban municipalities</div>
+            </div>
+            <div class="muni-type-card reveal-delay-4">
+                <span class="muni-type-icon">🌾</span>
+                <div class="muni-type-num">60</div>
+                <div class="muni-type-name">Rural Municipalities</div>
+                <div class="muni-type-desc">Gaun Palika units</div>
             </div>
         </div>
-    </section>
+        <div class="muni-info-box reveal">
+            <h3>Municipal Governance in Koshi Province</h3>
+            <ul class="muni-list">
+                <li><strong>Service Delivery</strong> — Healthcare, education, sanitation, and local infrastructure</li>
+                <li><strong>Revenue Collection</strong> — Local tax, fee collection, and fiscal management</li>
+                <li><strong>Permits & Licenses</strong> — Building permits, business registrations, certifications</li>
+                <li><strong>Social Welfare</strong> — Allowances, community programs, cultural events</li>
+                <li><strong>Development Planning</strong> — Annual plans, capital projects, monitoring</li>
+                <li><strong>Citizen Services</strong> — Birth, death, marriage registration and certificates</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-    <!-- Wards Section -->
-    <section id="wards" class="content-section">
-        <div class="section-container">
-            <h2>Wards Information</h2>
-            <p class="section-subtitle">734 Wards - Smallest Administrative Units</p>
-
-            <div class="ward-info">
-                <div class="info-box">
-                    <h4>Ward Overview</h4>
+<!-- WARDS -->
+<section id="wards" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Grassroots Administration</div>
+            <h2 class="section-title">Wards Information</h2>
+            <p class="section-desc">The smallest administrative units — 734 wards providing direct citizen services.</p>
+        </div>
+        <div class="wards-hero reveal">
+            <div class="ward-number-display">
+                <div class="ward-big-number">734</div>
+                <div class="ward-big-label">Total Wards</div>
+                <div class="ward-divider"></div>
+                <div class="ward-avg">9</div>
+                <div class="ward-avg-label">Avg Wards / Municipality</div>
+            </div>
+            <div class="ward-info-boxes">
+                <div class="ward-box">
+                    <h4>📋 Ward Structure</h4>
                     <ul>
-                        <li><strong>Total Wards:</strong> 734</li>
-                        <li><strong>Administrative Level:</strong> Grassroots</li>
-                        <li><strong>Functions:</strong> Local governance, service delivery, development</li>
-                        <li><strong>Leadership:</strong> Ward Chairman & Committee</li>
-                        <li><strong>Service Centers:</strong> Ward Office</li>
+                        <li><strong>Ward President</strong> — Elected representative</li>
+                        <li><strong>Ward Members</strong> — Committee representatives</li>
+                        <li><strong>Ward Secretary</strong> — Administrative staff</li>
+                        <li><strong>Administrative Level</strong> — Grassroots governance</li>
                     </ul>
                 </div>
-
-                <div class="info-box">
-                    <h4>Ward Services</h4>
+                <div class="ward-box">
+                    <h4>⚙️ Key Services</h4>
                     <ul>
-                        <li>Birth & Death Registration</li>
-                        <li>Marriage Certificates</li>
-                        <li>Building Permits</li>
-                        <li>Tax Collection</li>
-                        <li>Citizen Entitlements</li>
-                        <li>Local Project Supervision</li>
+                        <li>Birth, death & marriage registration</li>
+                        <li>Building permits & approvals</li>
+                        <li>Local tax collection</li>
+                        <li>Citizen entitlements</li>
+                        <li>Community welfare programs</li>
                     </ul>
                 </div>
-
-                <div class="info-box">
-                    <h4>Ward Office Hours</h4>
-                    <ul>
-                        <li><strong>Days:</strong> Sunday - Friday</li>
-                        <li><strong>Time:</strong> 10 AM - 5 PM</li>
-                        <li><strong>Holiday:</strong> Saturday</li>
-                        <li><strong>Special Hours:</strong> First Wednesday of Month</li>
-                        <li><strong>Services:</strong> Available on scheduled days</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="ward-search">
-                <h3>Find Your Ward Office</h3>
-                <div class="search-box">
-                    <input type="text" id="wardSearch" placeholder="Enter your district and ward number...">
-                    <button onclick="searchWard()">Find</button>
-                </div>
-                <div id="wardResults" class="ward-results hidden"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="content-section">
-        <div class="section-container">
-            <h2>Government Services</h2>
-            <p class="section-subtitle">Online & Offline Services Available</p>
-
-            <div class="service-tabs">
-                <div class="tab-btn active" onclick="switchServiceTab('registration')">Registration</div>
-                <div class="tab-btn" onclick="switchServiceTab('permits')">Permits & Licenses</div>
-                <div class="tab-btn" onclick="switchServiceTab('certificates')">Certificates</div>
-                <div class="tab-btn" onclick="switchServiceTab('welfare')">Welfare Programs</div>
-            </div>
-
-            <div class="service-content" id="registrationTab" style="display: block;">
-                <h3>Registration Services</h3>
-                <div class="service-grid">
-                    <div class="service-item">
-                        <h4>📝 Birth Registration</h4>
-                        <p>Register newborn within 35 days</p>
-                        <ul>
-                            <li>Required Documents: Hospital Certificate, Parents' Citizenship</li>
-                            <li>Processing Time: 3-5 days</li>
-                            <li>Fee: ₹100</li>
-                            <li>Location: Ward Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Birth Registration')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>💒 Marriage Registration</h4>
-                        <p>Register marriage within 35 days</p>
-                        <ul>
-                            <li>Required Documents: Both parties' Citizenship, 2 Witnesses</li>
-                            <li>Processing Time: 3-5 days</li>
-                            <li>Fee: ₹300</li>
-                            <li>Location: Ward/District Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Marriage Registration')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>⚰️ Death Certificate</h4>
-                        <p>Get official death certificate</p>
-                        <ul>
-                            <li>Required Documents: Medical Report, 2 Witnesses</li>
-                            <li>Processing Time: 1-2 days</li>
-                            <li>Fee: ₹50</li>
-                            <li>Location: Ward Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Death Certificate')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>🪪 Citizenship Certificate</h4>
-                        <p>Obtain citizenship by birth or naturalization</p>
-                        <ul>
-                            <li>Required Documents: Parents' Citizenship, Birth Proof</li>
-                            <li>Processing Time: 7-10 days</li>
-                            <li>Fee: ₹200</li>
-                            <li>Location: District Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Citizenship')">Apply Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-content" id="permitsTab" style="display: none;">
-                <h3>Permits & Licenses</h3>
-                <div class="service-grid">
-                    <div class="service-item">
-                        <h4>🏗️ Building Permit</h4>
-                        <p>Permission for construction</p>
-                        <ul>
-                            <li>Required Documents: Land Deed, Design Plans, Ownership Proof</li>
-                            <li>Processing Time: 15-30 days</li>
-                            <li>Fee: Variable (based on area)</li>
-                            <li>Location: Municipality Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Building Permit')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>🚗 Vehicle License</h4>
-                        <p>Vehicle registration and licensing</p>
-                        <ul>
-                            <li>Required Documents: Purchase Bill, Ownership Proof, Insurance</li>
-                            <li>Processing Time: 5-7 days</li>
-                            <li>Fee: Variable (based on vehicle type)</li>
-                            <li>Location: District Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Vehicle License')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>🏪 Business License</h4>
-                        <p>Permission for business operations</p>
-                        <ul>
-                            <li>Required Documents: Application, Citizenship, Address Proof</li>
-                            <li>Processing Time: 7-10 days</li>
-                            <li>Fee: ₹1,000-10,000 (based on business)</li>
-                            <li>Location: Municipality Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Business License')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>📋 Trade License</h4>
-                        <p>License for trade and commerce</p>
-                        <ul>
-                            <li>Required Documents: Application, PAN, Citizenship</li>
-                            <li>Processing Time: 5-10 days</li>
-                            <li>Fee: ₹1,500-15,000</li>
-                            <li>Location: Municipality Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Trade License')">Apply Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-content" id="certificatesTab" style="display: none;">
-                <h3>Certificates & Documents</h3>
-                <div class="service-grid">
-                    <div class="service-item">
-                        <h4>📄 Character Certificate</h4>
-                        <p>Official character certificate</p>
-                        <ul>
-                            <li>Required Documents: Citizenship, Photo</li>
-                            <li>Processing Time: 3-5 days</li>
-                            <li>Fee: ₹200</li>
-                            <li>Location: Ward/Police Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Character Certificate')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>📖 Domicile Certificate</h4>
-                        <p>Proof of residence certificate</p>
-                        <ul>
-                            <li>Required Documents: Citizenship, Address Proof, Bill</li>
-                            <li>Processing Time: 1-3 days</li>
-                            <li>Fee: ₹100</li>
-                            <li>Location: Ward Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Domicile Certificate')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>🏠 Land Ownership Certificate</h4>
-                        <p>Property ownership documentation</p>
-                        <ul>
-                            <li>Required Documents: Deed, Ownership Papers</li>
-                            <li>Processing Time: 10-15 days</li>
-                            <li>Fee: ₹1,000</li>
-                            <li>Location: District Land Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Land Certificate')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>📋 Income Certificate</h4>
-                        <p>Official income documentation</p>
-                        <ul>
-                            <li>Required Documents: Application, Tax Papers, Citizenship</li>
-                            <li>Processing Time: 5-7 days</li>
-                            <li>Fee: ₹300</li>
-                            <li>Location: Ward/Municipality Office</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Income Certificate')">Apply Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-content" id="welfareTab" style="display: none;">
-                <h3>Welfare Programs & Schemes</h3>
-                <div class="service-grid">
-                    <div class="service-item">
-                        <h4>💰 Old Age Allowance</h4>
-                        <p>Monthly allowance for senior citizens</p>
-                        <ul>
-                            <li>Eligibility: Age 60+ years</li>
-                            <li>Monthly Benefit: ₹3,000</li>
-                            <li>Application: Ward Office</li>
-                            <li>Documents: Citizenship, Age Proof</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Old Age Allowance')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>👩 Single Women Allowance</h4>
-                        <p>Support for single women</p>
-                        <ul>
-                            <li>Eligibility: Single women, divorced, widowed</li>
-                            <li>Monthly Benefit: ₹2,000</li>
-                            <li>Application: Ward Office</li>
-                            <li>Documents: Citizenship, Proof of Status</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Single Women Allowance')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>♿ Disability Allowance</h4>
-                        <p>Support for disabled persons</p>
-                        <ul>
-                            <li>Eligibility: Disabled persons (40% or more)</li>
-                            <li>Monthly Benefit: ₹2,000</li>
-                            <li>Application: Ward Office</li>
-                            <li>Documents: Medical Certificate, Citizenship</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Disability Allowance')">Apply Now</button>
-                    </div>
-
-                    <div class="service-item">
-                        <h4>👶 Child Grant</h4>
-                        <p>Support for disadvantaged children</p>
-                        <ul>
-                            <li>Eligibility: Children up to 18 years</li>
-                            <li>Monthly Benefit: ₹400-600</li>
-                            <li>Application: Ward Office</li>
-                            <li>Documents: Birth Certificate, Citizenship</li>
-                        </ul>
-                        <button class="btn-apply" onclick="applyService('Child Grant')">Apply Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="content-section">
-        <div class="section-container">
-            <h2>Contact Information</h2>
-            <p class="section-subtitle">Get in touch with Koshi Province Administration</p>
-
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <h4>📧 Email</h4>
-                    <p>info@koshiProvince.gov.np</p>
-                    <p>admin@koshiProvince.gov.np</p>
-                </div>
-
-                <div class="contact-card">
-                    <h4>📞 Phone</h4>
-                    <p>+977 (21) 470-1000</p>
-                    <p>+977 (21) 470-2000</p>
-                </div>
-
-                <div class="contact-card">
-                    <h4>🏛️ Office Address</h4>
-                    <p>Provincial Governor's Office</p>
-                    <p>Biratnagar, Morang District</p>
-                    <p>Koshi Province, Nepal</p>
-                </div>
-
-                <div class="contact-card">
+                <div class="ward-box">
                     <h4>🕐 Office Hours</h4>
-                    <p>Sunday - Friday: 10 AM - 5 PM</p>
-                    <p>Saturday: Closed</p>
-                    <p>Emergency: 24/7 Available</p>
+                    <ul>
+                        <li><strong>Days:</strong> Sunday – Friday</li>
+                        <li><strong>Time:</strong> 10:00 AM – 5:00 PM</li>
+                        <li><strong>Holiday:</strong> Saturday</li>
+                        <li><strong>Special:</strong> First Wednesday of month</li>
+                    </ul>
                 </div>
             </div>
+        </div>
+        <div class="ward-search-section reveal">
+            <h3>Find Your Ward Office</h3>
+            <div class="search-field">
+                <input type="text" id="wardSearch" placeholder="Enter district and ward number...">
+                <button onclick="searchWard()">Find Ward</button>
+            </div>
+            <div id="wardResults" class="hidden" style="margin-top:1rem;"></div>
+        </div>
+    </div>
+</section>
 
-            <div class="feedback-form">
-                <h3>Send Us Feedback or Complaint</h3>
+<!-- SERVICES -->
+<section id="services" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Citizen Services</div>
+            <h2 class="section-title">Government Services</h2>
+            <p class="section-desc">Online and offline services available across Koshi Province.</p>
+        </div>
+        <div class="service-tabs reveal">
+            <button class="tab-btn active" onclick="switchServiceTab('registration', this)">Registration</button>
+            <button class="tab-btn" onclick="switchServiceTab('permits', this)">Permits & Licenses</button>
+            <button class="tab-btn" onclick="switchServiceTab('certificates', this)">Certificates</button>
+            <button class="tab-btn" onclick="switchServiceTab('welfare', this)">Welfare Programs</button>
+        </div>
+
+        <div class="service-content active-tab" id="registrationTab">
+            <h3>Registration Services</h3>
+            <div class="service-grid">
+                <div class="service-item reveal reveal-delay-1">
+                    <h4>📝 Birth Registration</h4>
+                    <p>Register newborn within 35 days</p>
+                    <ul>
+                        <li>Hospital Certificate, Parents' Citizenship</li>
+                        <li>Processing Time: 3–5 days</li>
+                        <li>Fee: NPR 100</li>
+                        <li>Location: Ward Office</li>
+                    </ul>
+                    <button class="btn-apply" onclick="applyService('Birth Registration')">Apply Now</button>
+                </div>
+                <div class="service-item reveal reveal-delay-2">
+                    <h4>💒 Marriage Registration</h4>
+                    <p>Register marriage within 35 days</p>
+                    <ul>
+                        <li>Both parties' Citizenship, 2 Witnesses</li>
+                        <li>Processing Time: 3–5 days</li>
+                        <li>Fee: NPR 300</li>
+                        <li>Location: Ward / District Office</li>
+                    </ul>
+                    <button class="btn-apply" onclick="applyService('Marriage Registration')">Apply Now</button>
+                </div>
+                <div class="service-item reveal reveal-delay-3">
+                    <h4>⚰️ Death Certificate</h4>
+                    <p>Official death certificate issuance</p>
+                    <ul>
+                        <li>Medical Report, 2 Witnesses</li>
+                        <li>Processing Time: 1–2 days</li>
+                        <li>Fee: NPR 50</li>
+                        <li>Location: Ward Office</li>
+                    </ul>
+                    <button class="btn-apply" onclick="applyService('Death Certificate')">Apply Now</button>
+                </div>
+                <div class="service-item reveal reveal-delay-4">
+                    <h4>🪪 Citizenship Certificate</h4>
+                    <p>Citizenship by birth or naturalization</p>
+                    <ul>
+                        <li>Parents' Citizenship, Birth Proof</li>
+                        <li>Processing Time: 7–10 days</li>
+                        <li>Fee: NPR 200</li>
+                        <li>Location: District Office</li>
+                    </ul>
+                    <button class="btn-apply" onclick="applyService('Citizenship')">Apply Now</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-content" id="permitsTab">
+            <h3>Permits & Licenses</h3>
+            <div class="service-grid">
+                <div class="service-item"><h4>🏗️ Building Permit</h4><p>Permission for construction</p><ul><li>Land Deed, Design Plans, Ownership Proof</li><li>Processing Time: 15–30 days</li><li>Fee: Variable (based on area)</li><li>Location: Municipality Office</li></ul><button class="btn-apply" onclick="applyService('Building Permit')">Apply Now</button></div>
+                <div class="service-item"><h4>🚗 Vehicle License</h4><p>Vehicle registration & licensing</p><ul><li>Purchase Bill, Ownership Proof, Insurance</li><li>Processing Time: 5–7 days</li><li>Fee: Variable</li><li>Location: District Office</li></ul><button class="btn-apply" onclick="applyService('Vehicle License')">Apply Now</button></div>
+                <div class="service-item"><h4>🏪 Business License</h4><p>Permission for business operations</p><ul><li>Application, Citizenship, Address Proof</li><li>Processing Time: 7–10 days</li><li>Fee: NPR 1,000–10,000</li><li>Location: Municipality Office</li></ul><button class="btn-apply" onclick="applyService('Business License')">Apply Now</button></div>
+                <div class="service-item"><h4>📋 Trade License</h4><p>License for trade and commerce</p><ul><li>Application, PAN, Citizenship</li><li>Processing Time: 5–10 days</li><li>Fee: NPR 1,500–15,000</li><li>Location: Municipality Office</li></ul><button class="btn-apply" onclick="applyService('Trade License')">Apply Now</button></div>
+            </div>
+        </div>
+
+        <div class="service-content" id="certificatesTab">
+            <h3>Certificates & Documents</h3>
+            <div class="service-grid">
+                <div class="service-item"><h4>📄 Character Certificate</h4><p>Official character certificate</p><ul><li>Citizenship, Photo</li><li>Processing Time: 3–5 days</li><li>Fee: NPR 200</li><li>Location: Ward / Police Office</li></ul><button class="btn-apply" onclick="applyService('Character Certificate')">Apply Now</button></div>
+                <div class="service-item"><h4>📖 Domicile Certificate</h4><p>Proof of residence certificate</p><ul><li>Citizenship, Address Proof, Bill</li><li>Processing Time: 1–3 days</li><li>Fee: NPR 100</li><li>Location: Ward Office</li></ul><button class="btn-apply" onclick="applyService('Domicile Certificate')">Apply Now</button></div>
+                <div class="service-item"><h4>🏠 Land Ownership</h4><p>Property ownership documentation</p><ul><li>Deed, Ownership Papers</li><li>Processing Time: 10–15 days</li><li>Fee: NPR 1,000</li><li>Location: District Land Office</li></ul><button class="btn-apply" onclick="applyService('Land Certificate')">Apply Now</button></div>
+                <div class="service-item"><h4>📋 Income Certificate</h4><p>Official income documentation</p><ul><li>Application, Tax Papers, Citizenship</li><li>Processing Time: 5–7 days</li><li>Fee: NPR 300</li><li>Location: Ward / Municipality</li></ul><button class="btn-apply" onclick="applyService('Income Certificate')">Apply Now</button></div>
+            </div>
+        </div>
+
+        <div class="service-content" id="welfareTab">
+            <h3>Welfare Programs & Schemes</h3>
+            <div class="service-grid">
+                <div class="service-item"><h4>💰 Old Age Allowance</h4><p>Monthly allowance for senior citizens</p><ul><li>Eligibility: Age 60+ years</li><li>Monthly Benefit: NPR 3,000</li><li>Application: Ward Office</li><li>Documents: Citizenship, Age Proof</li></ul><button class="btn-apply" onclick="applyService('Old Age Allowance')">Apply Now</button></div>
+                <div class="service-item"><h4>👩 Single Women Allowance</h4><p>Support for single, divorced, widowed</p><ul><li>Eligibility: Single / widowed women</li><li>Monthly Benefit: NPR 2,000</li><li>Application: Ward Office</li><li>Documents: Citizenship, Status Proof</li></ul><button class="btn-apply" onclick="applyService('Single Women Allowance')">Apply Now</button></div>
+                <div class="service-item"><h4>♿ Disability Allowance</h4><p>Support for disabled persons</p><ul><li>Eligibility: 40%+ disability</li><li>Monthly Benefit: NPR 2,000</li><li>Application: Ward Office</li><li>Documents: Medical Certificate</li></ul><button class="btn-apply" onclick="applyService('Disability Allowance')">Apply Now</button></div>
+                <div class="service-item"><h4>👶 Child Grant</h4><p>Support for disadvantaged children</p><ul><li>Eligibility: Children up to 18 years</li><li>Monthly Benefit: NPR 400–600</li><li>Application: Ward Office</li><li>Documents: Birth Certificate</li></ul><button class="btn-apply" onclick="applyService('Child Grant')">Apply Now</button></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Get in Touch</div>
+            <h2 class="section-title">Contact Administration</h2>
+            <p class="section-desc">Reach Koshi Province administration via email, phone, or our feedback form.</p>
+        </div>
+        <div class="contact-layout">
+            <div class="contact-info">
+                <div class="contact-card reveal reveal-delay-1">
+                    <div class="contact-card-icon">📧</div>
+                    <div class="contact-card-text">
+                        <h4>Email</h4>
+                        <p><strong>info@koshiProvince.gov.np</strong><br>admin@koshiProvince.gov.np</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal reveal-delay-2">
+                    <div class="contact-card-icon">📞</div>
+                    <div class="contact-card-text">
+                        <h4>Telephone</h4>
+                        <p><strong>+977 (21) 470-1000</strong><br>+977 (21) 470-2000</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal reveal-delay-3">
+                    <div class="contact-card-icon">🏛️</div>
+                    <div class="contact-card-text">
+                        <h4>Office Address</h4>
+                        <p><strong>Provincial Governor's Office</strong><br>Biratnagar, Morang District<br>Koshi Province, Nepal</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal reveal-delay-4">
+                    <div class="contact-card-icon">🕐</div>
+                    <div class="contact-card-text">
+                        <h4>Office Hours</h4>
+                        <p><strong>Sun – Fri: 10:00 AM – 5:00 PM</strong><br>Saturday: Closed<br>Emergency: 24/7 Available</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-form reveal">
+                <h3>Send Feedback or Complaint</h3>
                 <form onsubmit="submitFeedback(event)">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" placeholder="Full Name" required>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>District</label>
+                            <select required>
+                                <option value="">Select district</option>
+                                <option>Bhojpur</option>
+                                <option>Dhankuta</option>
+                                <option>Ilam</option>
+                                <option>Jhapa</option>
+                                <option>Khotang</option>
+                                <option>Morang</option>
+                                <option>Okhaldhunga</option>
+                                <option>Panchthar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" placeholder="Brief subject" required>
+                        </div>
+                        <div class="form-group full">
+                            <label>Message</label>
+                            <textarea placeholder="Describe your feedback or complaint in detail..." required></textarea>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>District</label>
-                        <select required>
-                            <option value="">Select District</option>
-                            <option value="bhojpur">Bhojpur</option>
-                            <option value="dhankuta">Dhankuta</option>
-                            <option value="ilam">Ilam</option>
-                            <option value="jhapa">Jhapa</option>
-                            <option value="khotang">Khotang</option>
-                            <option value="morang">Morang</option>
-                            <option value="okhaldhunga">Okhaldhunga</option>
-                            <option value="panchthar">Panchthar</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Message</label>
-                        <textarea placeholder="Your message..." rows="5" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-submit">Submit</button>
+                    <button type="submit" class="btn-submit">Submit Message →</button>
                 </form>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-</div>
+</main>
 
-<!-- Footer -->
+<!-- =============================================
+   FOOTER
+============================================= -->
 <footer class="footer">
-    <p>&copy; 2026 Koshi Province Information Portal. All rights reserved.</p>
-    <p>Government of Nepal | Koshi Province Administration</p>
-    <p>Designed for seamless access to provincial information and services</p>
+    <div class="footer-inner">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="logo-devanagari" style="font-family:'Playfair Display',serif; font-size:1.4rem; color:white;">कोशी प्रदेश</div>
+                <p>Official information portal for Koshi Province — Government of Nepal. Providing transparent, accessible administrative data and citizen services.</p>
+            </div>
+            <div class="footer-col">
+                <h5>Navigate</h5>
+                <ul>
+                    <li onclick="navigateTo('home')">Home</li>
+                    <li onclick="navigateTo('about')">About Province</li>
+                    <li onclick="navigateTo('districts')">Districts</li>
+                    <li onclick="navigateTo('municipalities')">Municipalities</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Services</h5>
+                <ul>
+                    <li onclick="navigateTo('services')">Registration</li>
+                    <li onclick="navigateTo('services')">Permits</li>
+                    <li onclick="navigateTo('services')">Certificates</li>
+                    <li onclick="navigateTo('services')">Welfare</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Information</h5>
+                <ul>
+                    <li onclick="navigateTo('wards')">Wards</li>
+                    <li onclick="navigateTo('contact')">Contact</li>
+                    <li>Privacy Policy</li>
+                    <li>Accessibility</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 <span class="footer-gold">Koshi Province Administration</span> · Government of Nepal</span>
+            <span>Ministry of Home Affairs · All rights reserved</span>
+        </div>
+    </div>
 </footer>
 
+<!-- =============================================
+   JAVASCRIPT
+============================================= -->
 <script src="js/koshi.js"></script>
 </body>
 </html>

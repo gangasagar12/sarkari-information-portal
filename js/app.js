@@ -1,6 +1,3 @@
-// ============================================
-// SARKARI INFORMATION PORTAL - ENHANCED
-// ============================================
 
 class SarkariPortalEnhanced {
   constructor() {
