@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>बागमती प्रदेश — Bagmati Province Official Portal</title>
+    <meta name="description" content="Official information portal for Bagmati Province — districts, municipalities, wards, ministries, education, services and administration.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bagmati.css">
+
+    <style>
+        /* ── MINISTRY CARD OVERRIDES ── */
+        .ministry-card {
+            font-size: 1.05rem;
+        }
+        .ministry-card h3 {
+            font-size: 1.2rem;
+            line-height: 1.35;
+        }
+        .ministry-card p {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #444;
+        }
+        .ministry-card-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .ministry-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        /* Minister mini-profile: larger avatar, bigger name */
+        .minister-mini-profile {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: #f5f7fb;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 14px;
+        }
+        .minister-avatar-sm {
+            font-size: 2.4rem;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8ecf8;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .minister-mini-name {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #1a2340;
+        }
+        .minister-mini-role {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #6b7a99;
+            margin-top: 2px;
+        }
+        /* Footer: center the view-details button, remove secondary links */
+        .ministry-card-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid #e8ecf5;
+        }
+        .ministry-link {
+            display: none !important;
+        }
+        .btn-view-details {
+            padding: 11px 36px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            background: #1a3a7c;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background 0.18s;
+        }
+        .btn-view-details:hover {
+            background: #2452a8;
+        }
+
+        /* ── MODAL AVATAR: larger in details ── */
+        .minister-modal-avatar {
+            font-size: 4.5rem;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .minister-modal-name {
+            font-size: 1.75rem;
+        }
+
+        /* ── SERVICES: hide Apply Now buttons ── */
+        .btn-apply {
+            display: none !important;
+        }
+
+        /* ── GENERAL FONT SIZE BUMP ── */
+        .service-item h4 {
+            font-size: 1.1rem;
+        }
+        .service-item p, .service-item li {
+            font-size: 0.97rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- =============================================
+   TOPBAR
+============================================= -->
+<div class="topbar">
+    <div class="topbar-left">
+        <div class="topbar-dot"></div>
+        <span>Government of Nepal — Bagmati Province Official Portal</span>
+    </div>
+    <div class="topbar-right">
+        <a onclick="navigateTo('contact')">Help Desk</a>
+        <a onclick="navigateTo('services')">e-Services</a>
+        <a href="#">नेपाली</a>
+    </div>
+</div>
+
+<!-- =============================================
+   HEADER
+============================================= -->
+<header class="header" id="mainHeader">
+    <div class="header-inner">
+        <a class="logo" onclick="navigateTo('home')">
+            <div class="logo-icon">ब</div>
+            <div>
+                <div class="logo-devanagari">बागमती प्रदेश</div>
+                <div class="logo-english">Bagmati Province Portal</div>
+            </div>
+        </a>
+        <nav class="nav" id="mainNav">
+            <a class="nav-link active" onclick="navigateTo('home')">Home</a>
+            <a class="nav-link" onclick="navigateTo('about')">About</a>
+            <a class="nav-link" onclick="navigateTo('ministries')">Ministries</a>
+            <a class="nav-link" onclick="navigateTo('districts')">Districts</a>
+            <a class="nav-link" onclick="navigateTo('education')">Education</a>
+            <a class="nav-link" onclick="navigateTo('services')">Services</a>
+            <a class="nav-link nav-cta" onclick="navigateTo('contact')">Contact</a>
+        </nav>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+    <a class="nav-link active" onclick="navigateTo('home')">Home</a>
+    <a class="nav-link" onclick="navigateTo('about')">About</a>
+    <a class="nav-link" onclick="navigateTo('ministries')">Ministries</a>
+    <a class="nav-link" onclick="navigateTo('districts')">Districts</a>
+    <a class="nav-link" onclick="navigateTo('education')">Education</a>
+    <a class="nav-link" onclick="navigateTo('services')">Services</a>
+    <a class="nav-link nav-cta" onclick="navigateTo('contact')">Contact</a>
+</div>
+
+<!-- =============================================
+   HERO
+============================================= -->
+<div class="hero">
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-content-wrap">
+        <div class="hero-text-col">
+            <div class="hero-badge">Official Government Portal · Province No. 3</div>
+            <h1 class="hero-title">
+                बागमती प्रदेश<br>
+                <em>Bagmati Province</em>
+            </h1>
+            <p class="hero-subtitle">Heart of Nepal — Kathmandu Valley and beyond. The political, cultural, and administrative centre providing comprehensive services for all citizens of Bagmati Province.</p>
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="navigateTo('districts')">Explore Districts ↗</button>
+                <button class="btn-outline" onclick="navigateTo('services')">Government Services</button>
+            </div>
+        </div>
+        <div class="hero-emblem-col">
+            <div class="hero-right-title">Bagmati Province<br>Administration</div>
+            <div class="hero-right-sub">Provincial capital Hetauda — serving 13 districts including the Kathmandu Valley</div>
+            <div class="hero-right-pills">
+                <span class="hero-right-pill">Kathmandu</span>
+                <span class="hero-right-pill">Chitwan</span>
+                <span class="hero-right-pill">Makwanpur</span>
+                <span class="hero-right-pill">Sindhuli</span>
+                <span class="hero-right-pill">Dolakha</span>
+                <span class="hero-right-pill">Rasuwa</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero-stat-bar">
+        <div class="h-stat" onclick="navigateTo('districts')">
+            <div class="h-stat-num">13</div>
+            <div class="h-stat-lbl">Districts</div>
+        </div>
+        <div class="h-stat" onclick="navigateTo('about')">
+            <div class="h-stat-num">119</div>
+            <div class="h-stat-lbl">Municipalities</div>
+        </div>
+        <div class="h-stat" onclick="navigateTo('about')">
+            <div class="h-stat-num">1,305</div>
+            <div class="h-stat-lbl">Wards</div>
+        </div>
+        <div class="h-stat">
+            <div class="h-stat-num">6.08M</div>
+            <div class="h-stat-lbl">Population</div>
+        </div>
+        <div class="h-stat" onclick="navigateTo('ministries')">
+            <div class="h-stat-num">10</div>
+            <div class="h-stat-lbl">Ministries</div>
+        </div>
+    </div>
+</div>
+
+
+<div class="search-section">
+    <div class="search-inner">
+        <span class="search-label">Quick Search</span>
+        <div class="search-field">
+            <input type="text" id="globalSearch" placeholder="Enter district, municipality, ministry, or service name...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+        <div id="searchResults" class="hidden"></div>
+    </div>
+</div>
+<main>
+
+<!-- ── HOME ─────────────────────────────────── -->
+<section id="home" class="content-section active">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Province Overview</div>
+            <h2 class="section-title">Bagmati Province at a Glance</h2>
+            <p class="section-desc">A comprehensive overview of administrative structure, demographics, and key statistics of Bagmati Province — Nepal's central and most populous province.</p>
+        </div>
+
+        <!-- Stat Banner -->
+        <div class="stat-banner reveal">
+            <div class="stat-item" onclick="navigateTo('districts')">
+                <div class="stat-num">13</div>
+                <div class="stat-lbl">Districts</div>
+            </div>
+            <div class="stat-item" onclick="navigateTo('about')">
+                <div class="stat-num">119</div>
+                <div class="stat-lbl">Municipalities</div>
+            </div>
+            <div class="stat-item" onclick="navigateTo('ministries')">
+                <div class="stat-num">10</div>
+                <div class="stat-lbl">Ministries</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num">6.08M</div>
+                <div class="stat-lbl">Population</div>
+            </div>
+        </div>
+
+        <!-- About Cards -->
+        <div class="about-grid">
+            <div class="about-card reveal reveal-delay-1">
+                <div class="about-card-icon">📍</div>
+                <h3>Location & Geography</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Capital</span><span class="data-value">Hetauda</span></div>
+                    <div class="data-row"><span class="data-label">Area</span><span class="data-value">20,300 sq km</span></div>
+                    <div class="data-row"><span class="data-label">Region</span><span class="data-value">Central Nepal</span></div>
+                    <div class="data-row"><span class="data-label">Terrain</span><span class="data-value">Valley, Hills, Himalaya</span></div>
+                    <div class="data-row"><span class="data-label">Bordering</span><span class="data-value">China, Gandaki, Madhesh</span></div>
+                </div>
+            </div>
+            <div class="about-card reveal reveal-delay-2">
+                <div class="about-card-icon">👥</div>
+                <h3>Demographics</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Population</span><span class="data-value">6,084,042</span></div>
+                    <div class="data-row"><span class="data-label">Density</span><span class="data-value">300 per sq km</span></div>
+                    <div class="data-row"><span class="data-label">Literacy Rate</span><span class="data-value">81.2%</span></div>
+                    <div class="data-row"><span class="data-label">Census Year</span><span class="data-value">2021</span></div>
+                    <div class="data-row"><span class="data-label">Urban Population</span><span class="data-value">68%</span></div>
+                </div>
+            </div>
+            <div class="about-card reveal reveal-delay-3">
+                <div class="about-card-icon">🏛️</div>
+                <h3>Administration</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Assembly Members</span><span class="data-value">110 Members</span></div>
+                    <div class="data-row"><span class="data-label">Districts</span><span class="data-value">13</span></div>
+                    <div class="data-row"><span class="data-label">Municipalities</span><span class="data-value">119</span></div>
+                    <div class="data-row"><span class="data-label">Total Wards</span><span class="data-value">1,305</span></div>
+                    <div class="data-row"><span class="data-label">Provincial HQ</span><span class="data-value">Hetauda</span></div>
+                </div>
+            </div>
+            <div class="about-card reveal reveal-delay-1">
+                <div class="about-card-icon">💼</div>
+                <h3>Economy</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Primary Sector</span><span class="data-value">Industry & Trade</span></div>
+                    <div class="data-row"><span class="data-label">Major Industries</span><span class="data-value">Manufacturing, Tourism</span></div>
+                    <div class="data-row"><span class="data-label">Key Crops</span><span class="data-value">Rice, Maize, Wheat</span></div>
+                    <div class="data-row"><span class="data-label">Major Cities</span><span class="data-value">Kathmandu, Bharatpur</span></div>
+                </div>
+            </div>
+            <div class="about-card reveal reveal-delay-2">
+                <div class="about-card-icon">📚</div>
+                <h3>Education</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Universities</span><span class="data-value">8 Universities</span></div>
+                    <div class="data-row"><span class="data-label">Colleges</span><span class="data-value">700+</span></div>
+                    <div class="data-row"><span class="data-label">Schools</span><span class="data-value">5,000+</span></div>
+                    <div class="data-row"><span class="data-label">Enrolment</span><span class="data-value">1.2 Million+</span></div>
+                </div>
+            </div>
+            <div class="about-card reveal reveal-delay-3">
+                <div class="about-card-icon">🏥</div>
+                <h3>Healthcare</h3>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Major Hospitals</span><span class="data-value">24 Teaching/District</span></div>
+                    <div class="data-row"><span class="data-label">Health Posts</span><span class="data-value">500+</span></div>
+                    <div class="data-row"><span class="data-label">Coverage</span><span class="data-value">96% Population</span></div>
+                    <div class="data-row"><span class="data-label">Health Workers</span><span class="data-value">12,000+</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Strip -->
+        <div class="features-strip reveal">
+            <div class="feature-item">
+                <span class="feature-item-icon">🔔</span>
+                <h4>Live Announcements</h4>
+                <p>Latest notices, tenders, and official updates from the Bagmati Province administration published in real time.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-item-icon">🏛️</span>
+                <h4>Ministry Portal</h4>
+                <p>Direct access to all 10 provincial ministries — departments, contacts, and services under each ministry.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-item-icon">📄</span>
+                <h4>Online Services</h4>
+                <p>Apply for certificates, permits, registrations, and government documents — from any device, anytime.</p>
+            </div>
+            <div class="feature-item">
+                <span class="feature-item-icon">📊</span>
+                <h4>Data & Statistics</h4>
+                <p>Province-wide census data, development budgets, project reports, and official demographic statistics.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────── -->
+<section id="about" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Provincial Profile</div>
+            <h2 class="section-title">About Bagmati Province</h2>
+            <p class="section-desc">Established in 2015 under Nepal's federal restructuring, Bagmati Province encompasses the Kathmandu Valley, major Himalayan districts, and the inner Terai.</p>
+        </div>
+        <div class="about-detail-grid">
+            <div class="about-detail-card reveal reveal-delay-1">
+                <h3>📍 Location & Geography</h3>
+                <div class="data-row"><span class="data-label">Provincial Capital</span><span class="data-value">Hetauda</span></div>
+                <div class="data-row"><span class="data-label">Total Area</span><span class="data-value">20,300 sq km</span></div>
+                <div class="data-row"><span class="data-label">Region</span><span class="data-value">Central Nepal</span></div>
+                <div class="data-row"><span class="data-label">Elevation Range</span><span class="data-value">76m – 7,246m (Langtang)</span></div>
+                <div class="data-row"><span class="data-label">Major Rivers</span><span class="data-value">Bagmati, Trishuli, Sun Koshi</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-2">
+                <h3>👥 Demographics (2021 Census)</h3>
+                <div class="data-row"><span class="data-label">Total Population</span><span class="data-value">6,084,042</span></div>
+                <div class="data-row"><span class="data-label">Population Density</span><span class="data-value">~300 / sq km</span></div>
+                <div class="data-row"><span class="data-label">Literacy Rate</span><span class="data-value">81.2%</span></div>
+                <div class="data-row"><span class="data-label">Urban Population</span><span class="data-value">~68%</span></div>
+                <div class="data-row"><span class="data-label">Largest District</span><span class="data-value">Kathmandu (1.7M)</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-3">
+                <h3>🏛️ Administration</h3>
+                <div class="data-row"><span class="data-label">Provincial Assembly</span><span class="data-value">110 Members</span></div>
+                <div class="data-row"><span class="data-label">Districts</span><span class="data-value">13</span></div>
+                <div class="data-row"><span class="data-label">Municipalities</span><span class="data-value">119 (3 Metro, 5 SubMetro)</span></div>
+                <div class="data-row"><span class="data-label">Total Wards</span><span class="data-value">1,305</span></div>
+                <div class="data-row"><span class="data-label">Ministries</span><span class="data-value">10 Provincial</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-1">
+                <h3>💼 Economy & Industry</h3>
+                <div class="data-row"><span class="data-label">Major Sectors</span><span class="data-value">Tourism, Manufacturing, IT</span></div>
+                <div class="data-row"><span class="data-label">Industrial Areas</span><span class="data-value">Hetauda, Bhaktapur, Chitwan</span></div>
+                <div class="data-row"><span class="data-label">Key Exports</span><span class="data-value">Handicrafts, Garments</span></div>
+                <div class="data-row"><span class="data-label">Tourism Sites</span><span class="data-value">Pashupatinath, Chitwan NP</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-2">
+                <h3>📚 Education</h3>
+                <div class="data-row"><span class="data-label">Universities</span><span class="data-value">8 (incl. TU, KU, PU)</span></div>
+                <div class="data-row"><span class="data-label">Affiliated Colleges</span><span class="data-value">700+</span></div>
+                <div class="data-row"><span class="data-label">Schools</span><span class="data-value">5,000+</span></div>
+                <div class="data-row"><span class="data-label">Students Enrolled</span><span class="data-value">1.2 Million+</span></div>
+            </div>
+            <div class="about-detail-card reveal reveal-delay-3">
+                <h3>🏥 Healthcare</h3>
+                <div class="data-row"><span class="data-label">Teaching Hospitals</span><span class="data-value">14 Major Hospitals</span></div>
+                <div class="data-row"><span class="data-label">District Hospitals</span><span class="data-value">13</span></div>
+                <div class="data-row"><span class="data-label">Health Posts</span><span class="data-value">500+</span></div>
+                <div class="data-row"><span class="data-label">Population Coverage</span><span class="data-value">96%</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── MINISTER PROFILE MODAL ─────────────────── -->
+<div class="minister-modal-overlay" id="ministerModal" onclick="closeMinisterModal(event)">
+    <div class="minister-modal-box">
+        <button class="minister-modal-close" onclick="closeMinisterModal()">✕</button>
+        <div class="minister-modal-header">
+            <!-- Large avatar/image shown in the details modal -->
+            <div class="minister-modal-avatar" id="modalAvatar"></div>
+            <div class="minister-modal-header-text">
+                <div class="minister-modal-badge" id="modalMinistryBadge"></div>
+                <h2 class="minister-modal-name" id="modalName"></h2>
+                <p class="minister-modal-title" id="modalTitle"></p>
+                <div class="minister-modal-party" id="modalParty"></div>
+            </div>
+        </div>
+        <div class="minister-modal-body">
+            <div class="minister-modal-section">
+                <h4>📋 Personal Background</h4>
+                <p id="modalBackground"></p>
+            </div>
+            <div class="minister-modal-grid">
+                <div class="minister-modal-section">
+                    <h4>🎓 Education</h4>
+                    <ul id="modalEducation"></ul>
+                </div>
+                <div class="minister-modal-section">
+                    <h4>💼 Career History</h4>
+                    <ul id="modalCareer"></ul>
+                </div>
+            </div>
+            <div class="minister-modal-section">
+                <h4>🏛️ Ministry Overview</h4>
+                <p id="modalMinistryDesc"></p>
+            </div>
+            <div class="minister-modal-contact">
+                <span id="modalEmail">📧 ministry@bagmati.gov.np</span>
+                <span id="modalPhone">📞 +977 (057) 520-XXX</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── MINISTRIES ────────────────────────────── -->
+<section id="ministries" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Provincial Government</div>
+            <h2 class="section-title">Ministries of Bagmati Province</h2>
+            <p class="section-desc">10 provincial ministries governing all aspects of public administration, development, and service delivery across Bagmati Province.</p>
+        </div>
+
+        <div class="ministry-grid reveal">
+
+            <div class="ministry-card reveal-delay-1">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🏛️</div>
+                    <h3>Ministry of Internal Affairs & Law</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">
+                        <img src="images/flag.jpg" alt="">
+                    </div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Rajendra Pandey</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Responsible for law enforcement, police administration, disaster management, and legal affairs across the province.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('internal')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-2">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🏗️</div>
+                    <h3>Ministry of Physical Infrastructure</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">👷</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Sunita Sharma</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Oversees road construction, bridges, public buildings, drinking water supply, and urban planning projects.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('infrastructure')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-3">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">📚</div>
+                    <h3>Ministry of Social Development</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">👩‍🏫</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Kamala Thapa</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Manages education, health, sports, drinking water, and sanitation programs for provincial citizens.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('social')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-1">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🌾</div>
+                    <h3>Ministry of Land & Agriculture</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">👨‍🌾</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Bishnu Prasad KC</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Handles land management, agricultural development, livestock promotion, and food security programs.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('agriculture')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-2">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">💰</div>
+                    <h3>Ministry of Finance & Economic Affairs</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">👔</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Prakash Dahal</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Administers provincial budget, revenue collection, economic planning, public finance, and fiscal policy.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('finance')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-3">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🏭</div>
+                    <h3>Ministry of Industry, Tourism & Environment</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">🏙️</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Meena Gurung</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Promotes industrial investment, tourism development, environmental protection, and heritage conservation.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('industry')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-1">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">⚡</div>
+                    <h3>Ministry of Energy & Water Resources</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">⚡</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Narayan Bista</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Manages hydropower development, energy distribution, water resource planning, and irrigation infrastructure.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('energy')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-2">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🌲</div>
+                    <h3>Ministry of Forest & Environment</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">🌿</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Sita Devi Rai</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Oversees forest conservation, biodiversity protection, climate change adaptation, and environmental policy.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('forest')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-3">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🤝</div>
+                    <h3>Ministry of Women, Children & Social Welfare</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">👩‍👧</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Parvati Adhikari</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Leads gender equality programs, child protection, social security schemes, and welfare fund distribution.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('welfare')">View Details</button>
+                </div>
+            </div>
+
+            <div class="ministry-card reveal-delay-1">
+                <div class="ministry-card-top">
+                    <div class="ministry-icon">🔬</div>
+                    <h3>Ministry of Science, Technology & IT</h3>
+                </div>
+                <div class="minister-mini-profile">
+                    <div class="minister-avatar-sm">💻</div>
+                    <div>
+                        <div class="minister-mini-name">Hon. Anil Shrestha</div>
+                        <div class="minister-mini-role">Minister</div>
+                    </div>
+                </div>
+                <p>Drives digital governance, e-services, scientific research, technology innovation, and IT infrastructure.</p>
+                <div class="ministry-card-footer">
+                    <button class="btn-view-details" onclick="openMinisterModal('it')">View Details</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ── DISTRICTS ─────────────────────────────── -->
+<section id="districts" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Administrative Divisions</div>
+            <h2 class="section-title">Districts of Bagmati Province</h2>
+            <p class="section-desc">13 districts ranging from the urban Kathmandu Valley to the Himalayan heights of Rasuwa and Dolakha.</p>
+        </div>
+        <div class="filter-row reveal">
+            <input type="text" class="filter-input" id="districtFilter" placeholder="Filter by district or headquarter..." oninput="filterDistricts()">
+            <span class="filter-count" id="districtCount">13 districts</span>
+        </div>
+        <div class="districts-grid" id="districtsGrid"></div>
+    </div>
+</section>
+
+<!-- ── MUNICIPALITIES ────────────────────────── -->
+<section id="municipalities" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Local Government</div>
+            <h2 class="section-title">Municipalities</h2>
+            <p class="section-desc">119 municipalities across 13 districts of Bagmati Province — from 3 metropolitan cities to 60 rural municipalities.</p>
+        </div>
+        <div class="muni-types reveal">
+            <div class="muni-type-card reveal-delay-1">
+                <span class="muni-type-icon">🌟</span>
+                <div class="muni-type-num">3</div>
+                <div class="muni-type-name">Metropolitan Cities</div>
+                <div class="muni-type-desc">Kathmandu, Lalitpur, Bharatpur</div>
+            </div>
+            <div class="muni-type-card reveal-delay-2">
+                <span class="muni-type-icon">🏙️</span>
+                <div class="muni-type-num">5</div>
+                <div class="muni-type-name">Sub-metropolitan</div>
+                <div class="muni-type-desc">Hetauda, Bharatpur & others</div>
+            </div>
+            <div class="muni-type-card reveal-delay-3">
+                <span class="muni-type-icon">🏘️</span>
+                <div class="muni-type-num">51</div>
+                <div class="muni-type-name">Municipal Cities</div>
+                <div class="muni-type-desc">Urban municipalities</div>
+            </div>
+            <div class="muni-type-card reveal-delay-4">
+                <span class="muni-type-icon">🌾</span>
+                <div class="muni-type-num">60</div>
+                <div class="muni-type-name">Rural Municipalities</div>
+                <div class="muni-type-desc">Gaun Palika units</div>
+            </div>
+        </div>
+        <div class="muni-info-box reveal">
+            <h3>Municipal Governance in Bagmati Province</h3>
+            <ul class="muni-list">
+                <li><strong>Service Delivery</strong> — Healthcare, education, sanitation, and local infrastructure management</li>
+                <li><strong>Revenue Collection</strong> — Local property tax, fee collection, and fiscal management</li>
+                <li><strong>Permits & Licenses</strong> — Building permits, business registrations, and certifications</li>
+                <li><strong>Social Welfare</strong> — Allowances, community development programs, cultural events</li>
+                <li><strong>Development Planning</strong> — Annual development plans, capital projects, monitoring</li>
+                <li><strong>Citizen Services</strong> — Birth, death, marriage registration and vital certificates</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ── WARDS ──────────────────────────────────── -->
+<section id="wards" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Grassroots Administration</div>
+            <h2 class="section-title">Wards Information</h2>
+            <p class="section-desc">1,305 wards across Bagmati Province — the smallest administrative unit delivering direct citizen services.</p>
+        </div>
+        <div class="wards-hero reveal">
+            <div class="ward-number-display">
+                <div class="ward-big-number">1,305</div>
+                <div class="ward-big-label">Total Wards</div>
+                <div class="ward-divider"></div>
+                <div class="ward-avg">11</div>
+                <div class="ward-avg-label">Avg Wards / Municipality</div>
+            </div>
+            <div class="ward-info-boxes">
+                <div class="ward-box">
+                    <h4>📋 Ward Structure</h4>
+                    <ul>
+                        <li><strong>Ward Chair</strong> — Elected ward representative</li>
+                        <li><strong>Ward Members</strong> — 4 elected committee members</li>
+                        <li><strong>Women Members</strong> — 2 reserved seats for women</li>
+                        <li><strong>Ward Secretary</strong> — Permanent administrative staff</li>
+                    </ul>
+                </div>
+                <div class="ward-box">
+                    <h4>⚙️ Key Services</h4>
+                    <ul>
+                        <li>Birth, death, and marriage registration</li>
+                        <li>Building permits and approval letters</li>
+                        <li>Local tax and fee collection</li>
+                        <li>Social security allowance distribution</li>
+                        <li>Recommendation letters and certifications</li>
+                    </ul>
+                </div>
+                <div class="ward-box">
+                    <h4>🕐 Office Hours</h4>
+                    <ul>
+                        <li><strong>Days:</strong> Sunday – Friday</li>
+                        <li><strong>Time:</strong> 10:00 AM – 5:00 PM</li>
+                        <li><strong>Closed:</strong> Saturday & Public Holidays</li>
+                        <li><strong>Special Sessions:</strong> First Wednesday monthly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="ward-search-section reveal">
+            <h3>Find Your Ward Office</h3>
+            <div class="search-field">
+                <input type="text" id="wardSearch" placeholder="Enter your district name to find ward offices...">
+                <button onclick="searchWard()">Find Ward</button>
+            </div>
+            <div id="wardResults" class="hidden"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── EDUCATION ──────────────────────────────── -->
+<section id="education" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Knowledge & Learning</div>
+            <h2 class="section-title">Education in Bagmati Province</h2>
+            <p class="section-desc">Bagmati Province is Nepal's educational hub — home to 8 universities, 700+ colleges, and more than 5,000 schools serving 1.2 million students.</p>
+        </div>
+
+        <!-- Universities -->
+        <div class="edu-universities reveal">
+            <h3>🎓 Universities & Higher Education Institutions</h3>
+            <div class="uni-grid">
+                <div class="uni-card">
+                    <div class="uni-card-name">Tribhuvan University</div>
+                    <div class="uni-card-loc">📍 Kirtipur, Kathmandu — Est. 1959</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">Kathmandu University</div>
+                    <div class="uni-card-loc">📍 Dhulikhel, Kavrepalanchok — Est. 1991</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">Purbanchal University</div>
+                    <div class="uni-card-loc">📍 Gothgaun, Morang — Campus in Bagmati</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">Nepal Sanskrit University</div>
+                    <div class="uni-card-loc">📍 Dang — Regional campus in province</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">Rajarshi Janak University</div>
+                    <div class="uni-card-loc">📍 Janakpur — Affiliated campus</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">Mid-West University</div>
+                    <div class="uni-card-loc">📍 Surkhet — Affiliated programs</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">BP Koirala Institute of Health Sciences</div>
+                    <div class="uni-card-loc">📍 Dharan — Medical affiliation</div>
+                </div>
+                <div class="uni-card">
+                    <div class="uni-card-name">National Open College</div>
+                    <div class="uni-card-loc">📍 Sanepa, Lalitpur — Distance education</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edu Cards -->
+        <div class="edu-grid reveal">
+            <div class="edu-card reveal-delay-1">
+                <div class="edu-card-top">
+                    <div class="edu-card-icon">🏫</div>
+                    <h3>School Education</h3>
+                </div>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Government Schools</span><span class="data-value">3,800+</span></div>
+                    <div class="data-row"><span class="data-label">Private Schools</span><span class="data-value">1,200+</span></div>
+                    <div class="data-row"><span class="data-label">Total Students</span><span class="data-value">850,000+</span></div>
+                    <div class="data-row"><span class="data-label">Net Enrolment (Basic)</span><span class="data-value">96.2%</span></div>
+                    <div class="data-row"><span class="data-label">Literacy Rate</span><span class="data-value">81.2%</span></div>
+                </div>
+            </div>
+            <div class="edu-card reveal-delay-2">
+                <div class="edu-card-top">
+                    <div class="edu-card-icon">🎓</div>
+                    <h3>Higher Education</h3>
+                </div>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Universities</span><span class="data-value">8 (incl. affiliated)</span></div>
+                    <div class="data-row"><span class="data-label">Affiliated Colleges</span><span class="data-value">700+</span></div>
+                    <div class="data-row"><span class="data-label">Technical Institutes</span><span class="data-value">120+</span></div>
+                    <div class="data-row"><span class="data-label">Students (Higher Ed)</span><span class="data-value">350,000+</span></div>
+                    <div class="data-row"><span class="data-label">Research Centers</span><span class="data-value">30+</span></div>
+                </div>
+            </div>
+            <div class="edu-card reveal-delay-3">
+                <div class="edu-card-top">
+                    <div class="edu-card-icon">🔧</div>
+                    <h3>Technical & Vocational</h3>
+                </div>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">TVET Centers</span><span class="data-value">85+</span></div>
+                    <div class="data-row"><span class="data-label">Skills Programs</span><span class="data-value">200+ courses</span></div>
+                    <div class="data-row"><span class="data-label">Annual Enrolment</span><span class="data-value">25,000+</span></div>
+                    <div class="data-row"><span class="data-label">Certification</span><span class="data-value">CTEVT Affiliated</span></div>
+                </div>
+            </div>
+            <div class="edu-card reveal-delay-1">
+                <div class="edu-card-top">
+                    <div class="edu-card-icon">🏥</div>
+                    <h3>Medical & Health Education</h3>
+                </div>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Medical Colleges</span><span class="data-value">14 Teaching Hospitals</span></div>
+                    <div class="data-row"><span class="data-label">Nursing Colleges</span><span class="data-value">60+</span></div>
+                    <div class="data-row"><span class="data-label">Paramedical Institutes</span><span class="data-value">80+</span></div>
+                    <div class="data-row"><span class="data-label">Students (Medical)</span><span class="data-value">18,000+</span></div>
+                </div>
+            </div>
+            <div class="edu-card reveal-delay-2">
+                <div class="edu-card-top">
+                    <div class="edu-card-icon">💻</div>
+                    <h3>IT & Digital Education</h3>
+                </div>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">IT Colleges</span><span class="data-value">200+</span></div>
+                    <div class="data-row"><span class="data-label">Computer Training Centers</span><span class="data-value">500+</span></div>
+                    <div class="data-row"><span class="data-label">BSc CSIT Programs</span><span class="data-value">120+ Colleges</span></div>
+                    <div class="data-row"><span class="data-label">Annual IT Graduates</span><span class="data-value">15,000+</span></div>
+                </div>
+            </div>
+            <div class="edu-card reveal-delay-3">
+                <div class="edu-card-top">
+                    <div class="edu-card-icon">📋</div>
+                    <h3>Education Budget & Policy</h3>
+                </div>
+                <div class="card-data">
+                    <div class="data-row"><span class="data-label">Province Edu Budget</span><span class="data-value">NPR 12.5B (2023/24)</span></div>
+                    <div class="data-row"><span class="data-label">Scholarship Programs</span><span class="data-value">15+ Active Schemes</span></div>
+                    <div class="data-row"><span class="data-label">Free Basic Education</span><span class="data-value">Grade 1–8 (Public)</span></div>
+                    <div class="data-row"><span class="data-label">School Feeding Program</span><span class="data-value">Active in 11 Districts</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── SERVICES ───────────────────────────────── -->
+<section id="services" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Citizen Services</div>
+            <h2 class="section-title">Government Services</h2>
+            <p class="section-desc">Comprehensive online and offline government services available across all 13 districts of Bagmati Province.</p>
+        </div>
+        <div class="service-tabs reveal">
+            <button class="tab-btn active" onclick="switchServiceTab('registration', this)">Registration</button>
+            <button class="tab-btn" onclick="switchServiceTab('permits', this)">Permits & Licenses</button>
+            <button class="tab-btn" onclick="switchServiceTab('certificates', this)">Certificates</button>
+            <button class="tab-btn" onclick="switchServiceTab('welfare', this)">Welfare Programs</button>
+        </div>
+
+        <!-- Registration Tab -->
+        <div class="service-content active-tab" id="registrationTab">
+            <h3>Registration Services</h3>
+            <div class="service-grid">
+                <div class="service-item reveal reveal-delay-1">
+                    <h4>📝 Birth Registration</h4>
+                    <p>Register newborn within 35 days of birth</p>
+                    <ul>
+                        <li>Hospital Birth Certificate required</li>
+                        <li>Both parents' Citizenship Cards</li>
+                        <li>Processing Time: 3–5 working days</li>
+                        <li>Fee: NPR 100 (within 35 days)</li>
+                        <li>Location: Ward Office</li>
+                    </ul>
+                </div>
+                <div class="service-item reveal reveal-delay-2">
+                    <h4>💒 Marriage Registration</h4>
+                    <p>Register marriage within 35 days of ceremony</p>
+                    <ul>
+                        <li>Both parties' Citizenship Cards</li>
+                        <li>2 Witnesses with Citizenship</li>
+                        <li>Processing Time: 3–5 working days</li>
+                        <li>Fee: NPR 300</li>
+                        <li>Location: Ward / Municipality Office</li>
+                    </ul>
+                </div>
+                <div class="service-item reveal reveal-delay-3">
+                    <h4>⚰️ Death Registration</h4>
+                    <p>Official death certificate issuance</p>
+                    <ul>
+                        <li>Hospital / Medical Report</li>
+                        <li>2 Witnesses with Citizenship</li>
+                        <li>Processing Time: 1–2 working days</li>
+                        <li>Fee: NPR 50</li>
+                        <li>Location: Ward Office</li>
+                    </ul>
+                </div>
+                <div class="service-item reveal reveal-delay-4">
+                    <h4>🪪 Citizenship Certificate</h4>
+                    <p>Citizenship by descent or naturalization</p>
+                    <ul>
+                        <li>Parents' Citizenship Documents</li>
+                        <li>Birth Certificate, School Certificate</li>
+                        <li>Processing Time: 7–10 working days</li>
+                        <li>Fee: NPR 200</li>
+                        <li>Location: District Administration Office</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Permits Tab -->
+        <div class="service-content" id="permitsTab">
+            <h3>Permits & Licenses</h3>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h4>🏗️ Building Permit</h4>
+                    <p>Permit for construction of buildings</p>
+                    <ul>
+                        <li>Land Deed (Lal Purja)</li>
+                        <li>Architectural Design Plans</li>
+                        <li>Ownership Proof Documents</li>
+                        <li>Processing Time: 15–30 days</li>
+                        <li>Fee: Variable (based on built area)</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>🏪 Business Registration</h4>
+                    <p>Register a new business entity</p>
+                    <ul>
+                        <li>Application Form, Citizenship</li>
+                        <li>PAN Registration Certificate</li>
+                        <li>Address Proof Documents</li>
+                        <li>Processing Time: 7–10 days</li>
+                        <li>Fee: NPR 1,000–15,000</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>🚗 Vehicle Registration</h4>
+                    <p>Register vehicle and obtain license plates</p>
+                    <ul>
+                        <li>Vehicle Purchase Bill</li>
+                        <li>Insurance Certificate</li>
+                        <li>Owner's Citizenship Card</li>
+                        <li>Processing Time: 5–7 days</li>
+                        <li>Fee: Variable by vehicle class</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>📋 Trade License</h4>
+                    <p>Annual license for trade and commerce</p>
+                    <ul>
+                        <li>Business Registration Certificate</li>
+                        <li>PAN Certificate, Citizenship</li>
+                        <li>Renewal: Annual</li>
+                        <li>Processing Time: 5–10 days</li>
+                        <li>Fee: NPR 1,500–20,000</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificates Tab -->
+        <div class="service-content" id="certificatesTab">
+            <h3>Certificates & Documents</h3>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h4>📄 Character Certificate</h4>
+                    <p>Official good conduct certificate</p>
+                    <ul>
+                        <li>Citizenship Card</li>
+                        <li>Passport-size Photo</li>
+                        <li>Processing Time: 3–5 days</li>
+                        <li>Fee: NPR 200</li>
+                        <li>Location: Ward / Police Office</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>📖 Domicile Certificate</h4>
+                    <p>Proof of permanent residence</p>
+                    <ul>
+                        <li>Citizenship Card</li>
+                        <li>Utility Bill / Address Proof</li>
+                        <li>Processing Time: 1–3 days</li>
+                        <li>Fee: NPR 100</li>
+                        <li>Location: Ward Office</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>🏠 Land Ownership Certificate</h4>
+                    <p>Property registration and title deed</p>
+                    <ul>
+                        <li>Land Deed, Survey Map</li>
+                        <li>Previous Ownership Documents</li>
+                        <li>Processing Time: 10–15 days</li>
+                        <li>Fee: NPR 1,000+</li>
+                        <li>Location: District Land Revenue Office</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>💼 Income / Tax Certificate</h4>
+                    <p>Official annual income documentation</p>
+                    <ul>
+                        <li>PAN Registration, Tax Clearance</li>
+                        <li>Application Form</li>
+                        <li>Processing Time: 5–7 days</li>
+                        <li>Fee: NPR 300</li>
+                        <li>Location: Municipality / IRD Office</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Welfare Tab -->
+        <div class="service-content" id="welfareTab">
+            <h3>Welfare Programs & Social Security Schemes</h3>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h4>💰 Old Age Allowance</h4>
+                    <p>Monthly social security for senior citizens</p>
+                    <ul>
+                        <li>Eligibility: Age 70+ (Dalit 60+)</li>
+                        <li>Monthly Benefit: NPR 4,000</li>
+                        <li>Application: Ward Office</li>
+                        <li>Documents: Citizenship, Age Proof</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>👩 Single Women Allowance</h4>
+                    <p>Financial support for widowed / single women</p>
+                    <ul>
+                        <li>Eligibility: Widowed or separated women</li>
+                        <li>Monthly Benefit: NPR 2,000</li>
+                        <li>Application: Ward Office</li>
+                        <li>Documents: Citizenship, Status Proof</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>♿ Disability Allowance</h4>
+                    <p>Monthly support for persons with disabilities</p>
+                    <ul>
+                        <li>Eligibility: 50%+ disability classification</li>
+                        <li>Monthly Benefit: NPR 2,000–4,000</li>
+                        <li>Application: Ward Office</li>
+                        <li>Documents: Medical Certificate, ID Card</li>
+                    </ul>
+                </div>
+                <div class="service-item">
+                    <h4>👶 Child Protection Grant</h4>
+                    <p>Support for vulnerable children under 18</p>
+                    <ul>
+                        <li>Eligibility: Children up to 5 years (Karnali)</li>
+                        <li>Monthly Benefit: NPR 800</li>
+                        <li>Application: Ward Office</li>
+                        <li>Documents: Birth Certificate, Citizenship of parent</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────── -->
+<section id="contact" class="content-section">
+    <div class="section-wrap">
+        <div class="section-header reveal">
+            <div class="section-kicker">Get in Touch</div>
+            <h2 class="section-title">Contact Administration</h2>
+            <p class="section-desc">Reach Bagmati Province administration via email, phone, or submit your feedback and complaint using the form below.</p>
+        </div>
+        <div class="contact-layout">
+            <div class="contact-info">
+                <div class="contact-card reveal reveal-delay-1">
+                    <div class="contact-card-icon">📧</div>
+                    <div class="contact-card-text">
+                        <h4>Email</h4>
+                        <p><strong>info@bagmati.gov.np</strong><br>support@bagmati.gov.np</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal reveal-delay-2">
+                    <div class="contact-card-icon">📞</div>
+                    <div class="contact-card-text">
+                        <h4>Telephone</h4>
+                        <p><strong>+977 (057) 520-100</strong><br>+977 (057) 520-200 (Fax)</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal reveal-delay-3">
+                    <div class="contact-card-icon">🏛️</div>
+                    <div class="contact-card-text">
+                        <h4>Provincial Secretariat</h4>
+                        <p><strong>Bagmati Province Government</strong><br>Hetauda, Makwanpur District<br>Bagmati Province, Nepal</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal reveal-delay-4">
+                    <div class="contact-card-icon">🕐</div>
+                    <div class="contact-card-text">
+                        <h4>Office Hours</h4>
+                        <p><strong>Sun – Fri: 10:00 AM – 5:00 PM</strong><br>Saturday: Closed<br>Emergency: 24/7 Available</p>
+                    </div>
+                </div>
+                <div class="contact-card reveal">
+                    <div class="contact-card-icon">🆘</div>
+                    <div class="contact-card-text">
+                        <h4>Emergency Helpline</h4>
+                        <p><strong>100</strong> — Police<br><strong>101</strong> — Fire Brigade<br><strong>102</strong> — Ambulance</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-form reveal">
+                <h3>Send Feedback or Complaint</h3>
+                <form onsubmit="submitFeedback(event)">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="+977 98XXXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>District</label>
+                            <select required>
+                                <option value="">Select district</option>
+                                <option>Kathmandu</option>
+                                <option>Lalitpur</option>
+                                <option>Bhaktapur</option>
+                                <option>Kavrepalanchok</option>
+                                <option>Sindhupalchok</option>
+                                <option>Nuwakot</option>
+                                <option>Rasuwa</option>
+                                <option>Dhading</option>
+                                <option>Makwanpur</option>
+                                <option>Chitwan</option>
+                                <option>Sindhuli</option>
+                                <option>Ramechhap</option>
+                                <option>Dolakha</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select>
+                                <option value="">Select category</option>
+                                <option>General Inquiry</option>
+                                <option>Service Complaint</option>
+                                <option>Infrastructure Issue</option>
+                                <option>Education Related</option>
+                                <option>Healthcare Related</option>
+                                <option>Corruption Report</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject</label>
+                            <input type="text" placeholder="Brief subject line" required>
+                        </div>
+                        <div class="form-group full">
+                            <label>Message</label>
+                            <textarea placeholder="Describe your feedback, complaint, or query in detail. Please include relevant dates, locations, and any reference numbers if available..." required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Message →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="js/bagmati.js"></script>
+</main>
+</body>
+</html>

@@ -1,6 +1,4 @@
-/* =============================================
-   MADHESH PROVINCE PORTAL — JS v2
-============================================= */
+
 
 const DISTRICTS = [
   { id:'01', name:'Saptari',   nepali:'सप्तरी',  hq:'Rajbiraj', area:'1,363 sq km', pop:'638,347', munis:13, wards:112 },
